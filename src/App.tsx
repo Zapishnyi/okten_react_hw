@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {FC} from 'react';
 import './App.css';
+import Products from "./components/products/Products";
 
-const  App = ()=> {
+const  App:FC = ()=> {
   return (
-      <div className="App"></div>
+      <>
+         <Products/>
+      </>
   )
 }
 export default App;
