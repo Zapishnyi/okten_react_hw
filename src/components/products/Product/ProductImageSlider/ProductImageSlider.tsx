@@ -9,6 +9,7 @@ interface  IProps{
     trigger:number[]
     id:number
     }
+
 const ProductImageSlider:FC<IProps> = ({imgList,title,trigger,psn,id}) => {
     psn.push(0);
    trigger.push(0);
