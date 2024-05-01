@@ -13,10 +13,12 @@ const Products:FC = () => {
             .then(products => setProducts(products.products))
     },[])
 
+    let psn:number[]=[]
+    let trigger:number[]=[]
     return (
         <div className={styles.productsWrapper}>
             {
-            products.map((product:IProductProps,index) =>
+            products.map((product:IProductProps,index:number) =>
                 <div key={index} className={styles.productCard}>
                     <p> {product.title}</p>
                     <p>{product.description}</p>
@@ -29,8 +31,10 @@ const Products:FC = () => {
                      <ProductImageSlider
                         imgList={product.images}
                         title={product.title}
-                        id={product.id}
-                    />
+                        psn={psn}
+                        trigger={trigger}
+                        id={index}
+                     />
                 </div>)
         }
         </div>
