@@ -5,7 +5,11 @@ import Users from "./components/Users/Users";
 import UserPosts from "./components/UserPosts/UserPosts";
 import UserDetails from "./components/UserDetails/UserDetails";
 
-import { getUser, getUserPosts, getUsers } from "./services/data.api.service";
+import {
+  getUser,
+  getUserPosts,
+  getUsers,
+} from "./services/users_posts_get.api.service";
 
 import IUserProps from "./models/IUserProps";
 import IPostProps from "./models/IPostProps";
@@ -39,22 +43,6 @@ const App: FC = () => {
     }
   }, [userId]);
 
-  const skipChange = (buttonName: string, target: EventTarget) => {
-    let buttonPressed = target as unknown as HTMLButtonElement;
-    const buttonInWarning = () => {
-      buttonPressed.classList.toggle("warning");
-      setTimeout(() => buttonPressed.classList.toggle("warning"), 500);
-    };
-    switch (buttonName) {
-      case "prev":
-        skip !== 0 ? setSkip(skip - 20) : buttonInWarning();
-        break;
-      case "next":
-        skip !== 80 ? setSkip(skip + 20) : buttonInWarning();
-        break;
-    }
-  };
-
   const userDetails = (userId: number) => {
     setUserId(userId);
   };
@@ -64,7 +52,8 @@ const App: FC = () => {
       <div className="usersInfo">
         <Users
           users={users}
-          skipChange={skipChange}
+          skip={skip}
+          setSkip={setSkip}
           userDetails={userDetails}
         />
         <UserDetails userDetailsData={userDetailsData} />

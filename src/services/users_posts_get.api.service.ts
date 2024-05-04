@@ -9,6 +9,7 @@ let axiosInstance = axios.create({
 
 type ITypeUsersData = { users: IUserProps[] };
 type ITypePostsData = { posts: IPostProps[] };
+
 const getUsers = (skip: number): Promise<AxiosResponse<ITypeUsersData>> =>
   axiosInstance.get(`/users?limit=20&skip=${skip}`);
 

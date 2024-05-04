@@ -9,8 +9,8 @@ const UserPosts: FC<IUserPostsProps> = ({ userPosts }) => {
   return (
     <div className={styles.userPosts}>
       <h3 className={styles.header}>User posts</h3>
-      {userPosts.map((post) => (
-        <UserPost userPost={post} />
+      {userPosts.map((post, index) => (
+        <UserPost key={index} userPost={post} />
       ))}
     </div>
   );
