@@ -5,7 +5,6 @@ import styles from "./UserPosts.module.css";
 
 type IUserPostsProps = { userPosts: IPostProps[] };
 const UserPosts: FC<IUserPostsProps> = ({ userPosts }) => {
-  console.log("user posts", userPosts);
   return (
     <div className={styles.userPosts}>
       <h3 className={styles.header}>User posts</h3>

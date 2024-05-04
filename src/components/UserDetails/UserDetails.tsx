@@ -9,7 +9,6 @@ import styles from "./UserDetais.module.css";
 type ITypeUserDetailsData = { userDetailsData: IUserProps };
 
 const UserDetails: FC<ITypeUserDetailsData> = ({ userDetailsData }) => {
-  console.log("data details", userDetailsData);
   return (
     <div className={styles.userDetails}>
       <h3 className={styles.header}>User details</h3>
