@@ -1,0 +1,25 @@
+.usersWrapper {
+    display: flex;
+
+}
+
+.usersWrapper > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 300px;
+}
+
+.usersWrapper button {
+    border: 1px #787878 solid;
+    border-radius: 4px;
+    background: #ededee;
+    cursor: pointer;
+    transition: 0.5s;
+    padding: 5px;
+}
+
+.usersWrapper button:hover {
+    background: #cacaca;
+
+}

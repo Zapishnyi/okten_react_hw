@@ -1,0 +1,28 @@
+.userDetails {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 50%;
+    overflow-y: auto;
+    position: relative;
+
+}
+
+.detailsWrapper {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #9b9b9b;
+    border-radius: 5px;
+}
+
+.detailsWrapper:has(div:empty) {
+    display: none;
+}
+
+.header {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    text-align: center;
+    background: rgb(254, 254, 254);
+}

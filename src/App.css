@@ -1,0 +1,29 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.usersInfo {
+    display: flex;
+  
+
+}
+
+.warning {
+    animation: warning 0.5s linear;
+}
+
+@keyframes warning {
+    0% {
+        background-color: #cacaca;
+    }
+    70% {
+        background-color: #c58b8b;
+    }
+    100% {
+        background-color: #cacaca;
+    }
+
+}
+
