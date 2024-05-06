@@ -1,12 +1,12 @@
-import React, {FC} from 'react';
-import './App.css';
-import Products from "./components/products/Products";
+import React, { FC } from "react";
+import "./App.css";
+import Products from "./components/Products/Products";
 
-const  App:FC = ()=> {
+const App: FC = () => {
   return (
-      <>
-         <Products/>
-      </>
-  )
-}
+    <>
+      <Products />
+    </>
+  );
+};
 export default App;

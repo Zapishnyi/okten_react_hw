@@ -1,5 +1,19 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
- }
+}
+
+@keyframes screen_transition {
+    to {
+        opacity: 0;
+    }
+}
+
+/*::view-transition-old(root) {*/
+/*    animation: screen_transition 0.3s ease-in backwards;*/
+/*}*/
+
+/*::view-transition-new(root) {*/
+/*    animation: screen_transition 0.3s ease-in forwards;*/
+/*}*/

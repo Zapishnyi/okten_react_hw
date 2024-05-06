@@ -1,0 +1,97 @@
+.productsWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.wrapper {
+    position: relative;
+}
+
+.arrow {
+    position: fixed;
+    width: 150px;
+    top: calc(100vh / 2 - 70px);
+
+    filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0));
+    transition: 0.3s;
+}
+
+.arrow g path {
+    fill: rgba(132, 132, 132, 0.4);
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.arrow:hover {
+    filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.71));
+}
+
+.arrowLeft {
+    left: -15px;
+}
+
+.arrowL {
+}
+
+.arrowR {
+
+}
+
+.arrowRight {
+    right: -15px;
+}
+
+.paginationMarker {
+    position: fixed;
+    border: 2px rgba(0, 0, 0, 0.42) solid;
+    width: 16px;
+    height: 16px;
+    top: calc(100vh - 60px);
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0);
+    transition: 0.3s;
+}
+
+.mark_0 {
+    left: calc(50vw - 88px);
+}
+
+.mark_20 {
+    left: calc(50vw - 48px);
+}
+
+.mark_40 {
+    left: calc(50vw - 8px);
+}
+
+.mark_60 {
+    left: calc(50vw + 32px);
+}
+
+.mark_80 {
+    left: calc(50vw + 72px);
+}
+
+.checked {
+    background-color: rgb(0, 0, 0);
+
+}
+
+.warning {
+    animation: warning 0.5s linear;
+}
+
+@keyframes warning {
+    0% {
+        fill: rgba(132, 132, 132, 0.4);
+    }
+    60% {
+        fill: rgba(249, 170, 170, 0.4);
+    }
+    100% {
+        fill: rgba(132, 132, 132, 0.4);
+    }
+
+}
