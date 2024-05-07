@@ -10,10 +10,7 @@
     }
 }
 
-/*::view-transition-old(root) {*/
-/*    animation: screen_transition 0.3s ease-in backwards;*/
-/*}*/
-
-/*::view-transition-new(root) {*/
-/*    animation: screen_transition 0.3s ease-in forwards;*/
-/*}*/
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.5s;
+}

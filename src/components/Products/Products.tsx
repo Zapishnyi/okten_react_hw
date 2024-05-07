@@ -18,11 +18,12 @@ const Products: FC = () => {
       document.startViewTransition(() => {
         flushSync(() => {});
       });
-      document
-        .getElementsByClassName(styles[`mark_${skip}`])[0]
-        .classList.add(styles.checked);
+
       setProducts(products);
     });
+    return document
+      .getElementsByClassName(styles[`mark_${skip}`])[0]
+      .classList.add(styles.checked);
   }, [skip]);
   let psn: number[] = [];
   let trigger: number[] = [];
