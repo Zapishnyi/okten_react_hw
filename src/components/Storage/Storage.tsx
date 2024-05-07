@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
-import { useStorage } from "../../customHooks/useStorage";
 import styles from "./Storage.module.css";
+import { useStorage } from "../../customHooks/useStorage";
 
 const Storage: FC = () => {
   let keyInput = document.getElementsByClassName(
@@ -10,7 +10,8 @@ const Storage: FC = () => {
     styles.valueInput,
   )[0] as HTMLInputElement;
   const [value, setValue] = useState("");
-  useStorage(keyInput.value, value);
+  const [key, setKey] = useState("");
+  useStorage(key, value);
   return (
     <div>
       <h3>3. Using of Localstorage</h3>
@@ -26,6 +27,7 @@ const Storage: FC = () => {
       />
       <button
         onClick={() => {
+          setKey(keyInput.value);
           setValue(valueInput.value);
         }}
       >
