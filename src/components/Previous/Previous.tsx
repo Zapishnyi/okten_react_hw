@@ -1,25 +1,26 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { usePrevious } from "../../customHooks/usePrevious";
 import ValueList from "../ValueList/ValueList";
 import styles from "./Previouse.module.css";
 
 const Previous: FC = () => {
-  const [value, setValue] = useState("");
-  let values = usePrevious(value);
+  const [values, pushNewValue] = usePrevious();
+  const [random, setRandom] = useState<number>(0);
+  let input = document.getElementsByClassName(
+    styles.valueInput,
+  )[0] as HTMLInputElement;
   return (
     <div>
       <h3>2. Previous values assigment</h3>
       <input
-        className={styles.valueInput}
         type="text"
+        className={styles.valueInput}
         placeholder={"please enter new value"}
       />
       <button
         onClick={() => {
-          let input = document.getElementsByClassName(
-            styles.valueInput,
-          )[0] as HTMLInputElement;
-          setValue(input.value);
+          setRandom(Math.random());
+          pushNewValue(input.value);
         }}
       >
         Save value

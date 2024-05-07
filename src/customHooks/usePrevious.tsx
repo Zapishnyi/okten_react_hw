@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 
-export const usePrevious = (value: string) => {
+export const usePrevious = (): [string[], (newValue: string) => void] => {
   let values = useRef<string[]>([]);
-  useEffect(() => {
-    values.current.push(value);
-  }, [value]);
-  return values.current;
+  const pushNewValue = (newValue: string): void => {
+    values.current.push(newValue);
+  };
+  return [values.current, pushNewValue];
 };
