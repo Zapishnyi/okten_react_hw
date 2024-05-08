@@ -8,7 +8,7 @@ const ValueList: FC<IValuesProps> = ({ values }) => {
   return (
     <ol>
       {values.map((value, index) => (
-        <li key={index}>{value}</li>
+        <li key={index}>{JSON.stringify(value)}</li>
       ))}
     </ol>
   );

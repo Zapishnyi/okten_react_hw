@@ -1,34 +1,33 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import styles from "./Storage.module.css";
 import { useStorage } from "../../customHooks/useStorage";
 
 const Storage: FC = () => {
-  let keyInput = document.getElementsByClassName(
-    styles.keyInput,
-  )[0] as HTMLInputElement;
-  let valueInput = document.getElementsByClassName(
-    styles.valueInput,
-  )[0] as HTMLInputElement;
-  const [value, setValue] = useState("");
-  const [key, setKey] = useState("");
-  useStorage(key, value);
+  let storageWrite = useStorage();
+
+  function onClickHandler() {
+    let inputs = document.getElementsByClassName(
+      styles.input,
+    ) as unknown as HTMLInputElement[];
+    storageWrite(inputs[0].value, inputs[1].value);
+  }
+
   return (
     <div>
       <h3>3. Using of Localstorage</h3>
       <input
-        className={styles.keyInput}
+        className={styles.input}
         type="text"
         placeholder={"please enter new key"}
       />
       <input
-        className={styles.valueInput}
+        className={styles.input}
         type="text"
         placeholder={"please enter new value"}
       />
       <button
         onClick={() => {
-          setKey(keyInput.value);
-          setValue(valueInput.value);
+          onClickHandler();
         }}
       >
         Save value to local storage

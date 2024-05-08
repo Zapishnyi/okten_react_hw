@@ -1,9 +1,19 @@
-import React, { useEffect } from "react";
-
-export const useStorage = (valueKey: string, value: string): void => {
-  useEffect(() => {
+export const useStorage = (): ((valueKey: string, value: string) => void) => {
+  function storageWrite(valueKey: string, value: string) {
     if (valueKey) {
-      localStorage.setItem(valueKey, value);
+      if (localStorage.getItem(valueKey)) {
+        if (
+          window.confirm(
+            "Local Storage already has such a key, are you agree to overwrite value?",
+          )
+        ) {
+          localStorage.setItem(valueKey, value);
+        }
+      } else {
+        localStorage.setItem(valueKey, value);
+      }
     }
-  }, [valueKey, value]);
+  }
+
+  return storageWrite;
 };
