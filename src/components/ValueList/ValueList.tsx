@@ -1,16 +1,16 @@
 import React, { FC } from "react";
 
 interface IValuesProps {
-  values: string[];
+  previousValue: { previousValue: any };
+  currentValue: { currentValue: any };
 }
 
-const ValueList: FC<IValuesProps> = ({ values }) => {
+const ValueList: FC<IValuesProps> = ({ previousValue, currentValue }) => {
   return (
-    <ol>
-      {values.map((value, index) => (
-        <li key={index}>{JSON.stringify(value)}</li>
-      ))}
-    </ol>
+    <ul>
+      <li>Previous value: {`${previousValue}`}</li>
+      <li>Current value: {`${currentValue}`}</li>
+    </ul>
   );
 };
 export default ValueList;

@@ -4,7 +4,7 @@ import ValueList from "../ValueList/ValueList";
 import styles from "./Previouse.module.css";
 
 const Previous: FC = () => {
-  const [values, pushNewValue] = usePrevious();
+  const { previousValue, currentValue, pushNewValue } = usePrevious();
   const [, setRandom] = useState<number>(0);
 
   function clickHandler(): void {
@@ -31,7 +31,10 @@ const Previous: FC = () => {
         Save value
       </button>
       <p>Value mutation List:</p>
-      {[values] ? <ValueList values={values} /> : <></>}
+      <ValueList
+        previousValue={previousValue}
+        currentValue={currentValue}
+      /> : <></>
     </div>
   );
 };

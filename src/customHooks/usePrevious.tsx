@@ -1,9 +1,24 @@
 import React, { useRef } from "react";
 
-export const usePrevious: () => [any[], (newValue: any) => void] = () => {
-  let values: React.MutableRefObject<any> = useRef([]);
+interface IReturnProps {
+  previousValue: any;
+  currentValue: any;
+  pushNewValue: (newValue: any) => void;
+}
+
+export const usePrevious = (): IReturnProps => {
+  let values: React.MutableRefObject<any> = useRef(["", ""]);
   const pushNewValue = (newValue: any): void => {
-    values.current.push(newValue);
+    if (values.current.length === 2) {
+      values.current.shift();
+      values.current.push(newValue);
+    } else {
+      values.current.push(newValue);
+    }
   };
-  return [values.current, pushNewValue];
+  return {
+    previousValue: values.current[0],
+    currentValue: values.current[1],
+    pushNewValue,
+  };
 };
