@@ -8,11 +8,9 @@ import styles from "./Product.module.css";
 interface IProductsProps {
   cardId: number;
   product: IProductProps;
-  psn: number[];
-  trigger: number[];
 }
 
-const Product: FC<IProductsProps> = ({ cardId, product, psn, trigger }) => {
+const Product: FC<IProductsProps> = ({ cardId, product }) => {
   return (
     <div key={cardId} className={styles.productCard}>
       <p> {product.title}</p>
@@ -26,8 +24,6 @@ const Product: FC<IProductsProps> = ({ cardId, product, psn, trigger }) => {
       <ProductImageSlider
         imgList={product.images}
         title={product.title}
-        psn={psn}
-        trigger={trigger}
         id={cardId}
       />
     </div>

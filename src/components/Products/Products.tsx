@@ -8,6 +8,8 @@ import styles from "./Products.module.css";
 import { getProducts } from "../../services/products.api.service";
 import ButtonLeft from "../ButtonLeft/ButtonLeft";
 import ButtonRight from "../ButtonRight/ButtonRight";
+import PageMarkers from "../PageMarkers/PageMarkers";
+import Menu from "../Menu/Menu";
 
 const Products: FC = () => {
   const [products, setProducts] = useState<IProductProps[]>([]);
@@ -18,43 +20,23 @@ const Products: FC = () => {
       document.startViewTransition(() => {
         flushSync(() => {});
       });
-
       setProducts(products);
     });
     return document
       .getElementsByClassName(styles[`mark_${skip}`])[0]
       .classList.add(styles.checked);
   }, [skip]);
-  let psn: number[] = [];
-  let trigger: number[] = [];
   return (
     <div className={styles.wrapper}>
+      <Menu />
       <div className={styles.productsWrapper}>
         {products.map((product, index: number) => (
-          <Product
-            key={index}
-            cardId={index}
-            product={product}
-            psn={psn}
-            trigger={trigger}
-          />
+          <Product key={index} cardId={index} product={product} />
         ))}
       </div>
       <ButtonLeft setSkip={setSkip} />
       <ButtonRight setSkip={setSkip} />
-      <div className={[styles.paginationMarker, styles.mark_0].join(" ")}></div>
-      <div
-        className={[styles.paginationMarker, styles.mark_20].join(" ")}
-      ></div>
-      <div
-        className={[styles.paginationMarker, styles.mark_40].join(" ")}
-      ></div>
-      <div
-        className={[styles.paginationMarker, styles.mark_60].join(" ")}
-      ></div>
-      <div
-        className={[styles.paginationMarker, styles.mark_80].join(" ")}
-      ></div>
+      <PageMarkers />
     </div>
   );
 };

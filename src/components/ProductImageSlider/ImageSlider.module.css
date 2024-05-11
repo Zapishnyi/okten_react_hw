@@ -1,20 +1,23 @@
-.imgWrapper{
+.imgWrapper {
     display: flex;
-    position:relative;
-    width:270px;
+    position: relative;
+    width: 200px;
     overflow: hidden;
     flex-grow: 2;
+    border-radius: 10px;
+
 }
 
 .imgWrapper img {
-    width: 270px;
+    width: 200px;
     border-radius: 10px;
 }
+
 .imgRibbon {
     display: flex;
     position: relative;
-    left:0;
+    left: 0;
     align-items: center;
-     width:fit-content;
-   transition: 0.5s ease-in-out;
+    width: fit-content;
+    transition: 0.5s ease-in-out;
 }
