@@ -1,3 +1,6 @@
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 
-axios;
+let AxiosInstance: AxiosInstance = axios.create({
+  baseURL: "https://jsonplaceholder.typicode.com",
+  headers: { "Content-Type": "application/json" },
+});
