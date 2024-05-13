@@ -1,9 +1,12 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
+import PostForm from "./components/PostForm/PostForm";
 
-const  App = ()=> {
+const App = () => {
   return (
-      <div className="App"></div>
-  )
-}
+    <div className="App">
+      <PostForm />
+    </div>
+  );
+};
 export default App;
