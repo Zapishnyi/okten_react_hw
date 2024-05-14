@@ -8,7 +8,9 @@ const PostForm = () => {
   let { register, handleSubmit } = postForm;
   console.log(postForm);
   // handleSubmit(() => {});
-  const handleSubmitCallback = (formData: IPostProps) => {};
+  const handleSubmitCallback = (formData: IPostProps) => {
+    console.log(formData);
+  };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(handleSubmitCallback)}>
