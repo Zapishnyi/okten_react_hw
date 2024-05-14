@@ -2,9 +2,15 @@
     display: flex;
     flex-direction: column;
     width: 300px;
+    margin: 0 auto;
 }
 
 .form label {
     display: flex;
     justify-content: space-between;
+    margin: 5px 0;
+}
+
+textarea {
+    resize: none;
 }
