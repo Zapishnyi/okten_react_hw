@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import styles from "./PostForm.module.css";
 import { useForm } from "react-hook-form";
-import { IPostProps } from "../../models/IPostProps";
-import { postUserPost } from "../../services/UserPostAdd.api.service";
-import { IPostResponse } from "../../models/IPostResponse";
-import ServerResponseObj from "../ServerResponseObj/ServerResponseObj";
 import { joiResolver } from "@hookform/resolvers/joi";
+import { postUserPost } from "../../services/UserPostAdd.api.service";
+import ServerResponseObj from "../ServerResponseObj/ServerResponseObj";
 import { postValidator } from "../../validators/post.validator";
+import { IPostProps } from "../../models/IPostProps";
+import { IPostResponse } from "../../models/IPostResponse";
+import styles from "./PostForm.module.css";
 
 const PostForm = () => {
   const [serverResponse, setServerResponse] = useState<IPostResponse | null>(
