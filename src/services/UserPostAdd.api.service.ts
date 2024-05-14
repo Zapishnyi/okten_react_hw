@@ -8,18 +8,10 @@ let axiosInstance: AxiosInstance = axios.create({
     "Content-type": "application/json; charset=UTF-8",
   },
 });
-console.log("render");
+
 const postUserPost = (
   props: IPostProps,
 ): Promise<AxiosResponse<IPostResponse>> =>
-  axiosInstance.post(
-    "/posts",
-    { ...props },
-    {
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    },
-  );
+  axiosInstance.post("/posts", { ...props });
 
 export { postUserPost };
