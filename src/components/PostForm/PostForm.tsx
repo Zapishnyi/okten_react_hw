@@ -22,8 +22,8 @@ const PostForm = () => {
     resolver: joiResolver(postValidator),
   });
 
-  const handleSubmitCallback = (formData: IPostProps) => {
-    postUserPost(formData).then(({ data }) => {
+  const handleSubmitCallback = async (formData: IPostProps) => {
+    await postUserPost(formData).then(({ data }) => {
       setServerResponse(data);
     });
   };
