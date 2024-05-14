@@ -13,15 +13,14 @@ const PostForm = () => {
     null,
   );
 
-  let postForm = useForm<IPostProps>({
-    mode: "all",
-    resolver: joiResolver(postValidator),
-  });
   let {
     register,
     handleSubmit,
     formState: { errors },
-  } = postForm;
+  } = useForm<IPostProps>({
+    mode: "all",
+    resolver: joiResolver(postValidator),
+  });
 
   const handleSubmitCallback = (formData: IPostProps) => {
     postUserPost(formData).then(({ data }) => {
