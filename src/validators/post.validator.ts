@@ -10,17 +10,14 @@ export const postValidator = Joi.object({
       "string.pattern.base": "This literals are not allowed",
       "string.max": "26 symbols limit reached",
     }),
-  body: Joi.string()
-    .required()
-    .max(350)
-    .pattern(/^[\D]*$/)
-    .messages({
-      "string.empty": "This field is required",
-      "string.max": "Maximum 350 symbols limit reached",
-      "string.pattern.base": "Numbers are not allowed",
-    }),
+  body: Joi.string().required().max(350).pattern(/^\D*$/).messages({
+    "string.empty": "This field is required",
+    "string.max": "Maximum 350 symbols limit reached",
+    "string.pattern.base": "Numbers are not allowed",
+  }),
   userId: Joi.number().integer().max(10).min(1).required().messages({
     "number.base": "Only numbers are allowed",
+    "number.integer": "Decimals are not allowed",
     "number.max": "ID number must be less or equal 10",
     "number.min": "ID number must be greater or equal 1",
   }),
