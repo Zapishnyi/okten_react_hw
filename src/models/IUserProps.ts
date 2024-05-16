@@ -1,4 +1,4 @@
-export interface IUserProps {
+export default interface IUserProps {
   id: number;
   name?: string;
   username?: string;

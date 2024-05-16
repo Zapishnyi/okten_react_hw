@@ -4,9 +4,9 @@ import Header from "../components/Header/Header";
 import { Outlet } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import styles from "./MainLayout.module.css";
-import { IUserProps } from "../models/IUserProps";
-import { IPostProps } from "../models/IPostProps";
-import { IUserChoice } from "../models/IUserChoice";
+// import { IUserProps } from "../models/IUserProps";
+// import { IPostProps } from "../models/IPostProps";
+// import { IUserChoice } from "../models/IUserChoice";
 
 const MainLayout: FC = () => {
   // const [chosenUser, setChosenUser] = useState<IUserProps | null>(null);

@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-import { IUserProps } from "./IUserProps";
-import { IPostProps } from "./IPostProps";
+import IUserProps from "./IUserProps";
+import IPostProps from "./IPostProps";
 
 export interface IUserChoice {
   chosenUser: IUserProps | null;

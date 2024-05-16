@@ -3,8 +3,8 @@ import {
   baseUrlFmPlaceholder,
   urlsFmPlaceholder,
 } from "../constants/urlsJsonplaceholder";
-import { IUserProps } from "../models/IUserProps";
-import { IPostProps } from "../models/IPostProps";
+import IUserProps from "../models/IUserProps";
+import IPostProps from "../models/IPostProps";
 import { ICommentProps } from "../models/ICommentProps";
 
 const axiosInstance = axios.create({

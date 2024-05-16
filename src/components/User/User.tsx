@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styles from "./User.module.css";
-import { IUserProps } from "../../models/IUserProps";
+import IUserProps from "../../models/IUserProps";
 
 const User: FC<{
   user: IUserProps;
