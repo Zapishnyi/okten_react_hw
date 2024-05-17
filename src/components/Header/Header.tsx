@@ -8,21 +8,21 @@ const Header: FC<IChoiceExt> = ({ userChoice: { chosenUser, chosenPost } }) => {
     <div className={styles.headerWrapper}>
       <NavLink to={"users"}>Users</NavLink>
       <NavLink
-        className={["chosenUserDepending"].join(" ")}
+        className={"chosenUserDepending"}
         to={"userDetails"}
         state={chosenUser}
       >
         User Details
       </NavLink>
       <NavLink
-        className={["chosenUserDepending"].join(" ")}
+        className={"chosenUserDepending"}
         to={"userPosts"}
         state={chosenUser}
       >
         User Posts
       </NavLink>
       <NavLink
-        className={["chosenPostDepending"].join(" ")}
+        className={"chosenPostDepending"}
         to={"comments"}
         state={chosenPost}
       >
