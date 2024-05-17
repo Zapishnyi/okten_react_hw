@@ -1,4 +1,4 @@
-import React, { FC, useRef } from "react";
+import React, { FC } from "react";
 import { useLocation } from "react-router-dom";
 import IUserProps from "../../models/IUserProps";
 import styles from "./UserDetails.module.css";
