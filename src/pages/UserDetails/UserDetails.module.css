@@ -1,0 +1,29 @@
+.objectWrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #6e6e6e;
+    border-radius: 8px;
+}
+
+.dataLine {
+    display: flex;
+    margin: 5px 0 5px 15px;
+    overflow-x: auto;
+}
+
+.key {
+    display: block;
+    font-weight: bold;
+}
+
+
+.key:first-letter {
+    text-transform: uppercase;
+}
+
+.separator {
+    margin: 0 5px;
+}
+

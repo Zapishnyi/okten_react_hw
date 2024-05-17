@@ -17,3 +17,23 @@ code {
     margin: 0;
     box-sizing: border-box;
 }
+
+.active {
+    font-weight: bold;
+}
+
+body .notActive {
+    background: gray;
+    cursor: auto;
+    pointer-events: none;
+}
+
+.noData {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #6e6e6e;
+    border-radius: 8px;
+    text-align: center;
+    width: fit-content;
+    align-self: center;
+}

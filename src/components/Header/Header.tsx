@@ -1,14 +1,33 @@
-import React from "react";
+import React, { FC } from "react";
 import styles from "./Header.module.css";
 import { NavLink } from "react-router-dom";
+import IChoiceExt from "../../models/IChoiceExt";
 
-const Header = () => {
+const Header: FC<IChoiceExt> = ({ userChoice: { chosenUser, chosenPost } }) => {
   return (
     <div className={styles.headerWrapper}>
-      <NavLink to={"/"}>Home</NavLink>
-      <NavLink to={"userDetails"}>User Details</NavLink>
-      <NavLink to={"userPosts"}>User Posts</NavLink>
-      <NavLink to={"Comments"}>Comments to User post</NavLink>
+      <NavLink to={"users"}>Users</NavLink>
+      <NavLink
+        className={["chosenUserDepending"].join(" ")}
+        to={"userDetails"}
+        state={chosenUser}
+      >
+        User Details
+      </NavLink>
+      <NavLink
+        className={["chosenUserDepending"].join(" ")}
+        to={"userPosts"}
+        state={chosenUser}
+      >
+        User Posts
+      </NavLink>
+      <NavLink
+        className={["chosenPostDepending"].join(" ")}
+        to={"comments"}
+        state={chosenPost}
+      >
+        Comments to User post
+      </NavLink>
     </div>
   );
 };

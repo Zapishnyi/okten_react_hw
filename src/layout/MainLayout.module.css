@@ -1,5 +1,6 @@
 .layoutWrapper {
     height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -8,4 +9,8 @@
 .layoutWrapper main {
     height: 100%;
     width: 100%;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

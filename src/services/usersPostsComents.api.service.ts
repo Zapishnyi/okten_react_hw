@@ -15,14 +15,10 @@ const axiosInstance = axios.create({
 export const placeholderApi = {
   getAllUsers: (): Promise<AxiosResponse<IUserProps[]>> =>
     axiosInstance.get(urlsFmPlaceholder.allUsers),
-  getOneUser: (userId: string): Promise<AxiosResponse<IUserProps>> =>
-    axiosInstance.get(urlsFmPlaceholder.oneUser(userId)),
-  getAllPosts: (): Promise<AxiosResponse<IPostProps[]>> =>
-    axiosInstance.get(urlsFmPlaceholder.allPosts),
-  getOnePost: (userId: string): Promise<AxiosResponse<IPostProps>> =>
-    axiosInstance.get(urlsFmPlaceholder.onePost(userId)),
-  getAllComments: (): Promise<AxiosResponse<ICommentProps[]>> =>
-    axiosInstance.get(urlsFmPlaceholder.allComments),
-  getCommentsOfPost: (postId: string): Promise<AxiosResponse<ICommentProps>> =>
+  getPostsOfUser: (userId: string): Promise<AxiosResponse<IPostProps[]>> =>
+    axiosInstance.get(urlsFmPlaceholder.postsOfUser(userId)),
+  getCommentsOfPost: (
+    postId: string,
+  ): Promise<AxiosResponse<ICommentProps[]>> =>
     axiosInstance.get(urlsFmPlaceholder.commentsToPost(postId)),
 };

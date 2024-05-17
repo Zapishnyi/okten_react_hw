@@ -1,15 +1,25 @@
 import React, { FC } from "react";
 import styles from "./User.module.css";
 import IUserProps from "../../models/IUserProps";
+import { IUserChoice } from "../../models/IUserChoice";
+import { NavLink } from "react-router-dom";
 
-const User: FC<{
+interface IUser {
   user: IUserProps;
-}> = ({ user }) => {
+  userChoice: IUserChoice;
+}
+
+const User: FC<IUser> = ({ user, userChoice: { setChosenUser } }) => {
   return (
-    <div className={styles.userCard}>
+    <NavLink
+      to={"/userDetails"}
+      className={styles.userCard}
+      onClick={() => setChosenUser(user)}
+      state={user}
+    >
       <span>{user.id}</span>
       <span>{` - ${user.name} ${user.username}`}</span>
-    </div>
+    </NavLink>
   );
 };
 

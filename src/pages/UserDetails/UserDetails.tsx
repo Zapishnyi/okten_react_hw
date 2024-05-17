@@ -1,17 +1,17 @@
-import React, { FC } from "react";
+import React, { FC, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import IUserProps from "../../models/IUserProps";
+import styles from "./UserDetails.module.css";
 
 const UserDetails: FC = () => {
   const location = useLocation();
-  console.log(location.state);
   const ObjectCrawlerToRender = (props: IUserProps) =>
     Object.entries(props).map(([key, value], index) => (
-      <div key={index}>
+      <div key={index} className={styles.dataLine}>
         <div>
           <span>{key}</span>
         </div>
-        <span>:</span>
+        <span className={styles.separator}>:</span>
         <div>
           {typeof value === "object" ? (
             ObjectCrawlerToRender(value)
@@ -21,7 +21,11 @@ const UserDetails: FC = () => {
         </div>
       </div>
     ));
-  return <div>{ObjectCrawlerToRender(location.state)}</div>;
+  return (
+    <div className={styles.objectWrapper}>
+      {location.state ? ObjectCrawlerToRender(location.state) : "No data"}
+    </div>
+  );
 };
 
 export default UserDetails;

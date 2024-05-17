@@ -1,0 +1,18 @@
+.postWrapper {
+    margin: 10px;
+    border: 1px #737373 solid;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+
+}
+
+.linkStyle {
+    text-decoration: none;
+    color: black;
+}
+
+.postWrapper:hover {
+    background-color: #afafaf;
+}

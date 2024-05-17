@@ -4,10 +4,11 @@ const urlsFmPlaceholder = {
   allUsers: `users`,
   oneUser: (userID: string) => `${urlsFmPlaceholder.allUsers}/${userID}`,
   allPosts: `posts`,
-  onePost: (userID: string) => `${urlsFmPlaceholder.onePost}/${userID}`,
+  postsOfUser: (userID: string) =>
+    `${urlsFmPlaceholder.allPosts}/?userId=${userID}`,
   allComments: `comments`,
   commentsToPost: (postId: string) =>
-    `${urlsFmPlaceholder.allComments}/${postId}`,
+    `${urlsFmPlaceholder.allComments}?postId=${postId}`,
 };
 
 export { baseUrlFmPlaceholder, urlsFmPlaceholder };
