@@ -7,6 +7,7 @@ import styles from "./MainLayout.module.css";
 import IUserProps from "../models/IUserProps";
 import IPostProps from "../models/IPostProps";
 import { IUserChoice } from "../models/IUserChoice";
+import { flushSync } from "react-dom";
 
 const MainLayout: FC = () => {
   const [chosenUser, setChosenUser] = useState<IUserProps | null>(null);
@@ -17,6 +18,9 @@ const MainLayout: FC = () => {
     setChosenUser,
     setChosenPost,
   };
+  document.startViewTransition(() => {
+    flushSync(() => {});
+  });
   return (
     <div className={styles.layoutWrapper}>
       <Header userChoice={userChoice} />
