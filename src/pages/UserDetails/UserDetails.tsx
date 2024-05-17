@@ -22,8 +22,10 @@ const UserDetails: FC = () => {
       </div>
     ));
   return (
-    <div className={styles.objectWrapper}>
-      {location.state ? ObjectCrawlerToRender(location.state) : "No data"}
+    <div className={styles.container}>
+      <div className={styles.objectWrapper}>
+        {location.state ? ObjectCrawlerToRender(location.state) : "No data"}
+      </div>
     </div>
   );
 };

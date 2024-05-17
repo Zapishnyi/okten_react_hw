@@ -1,4 +1,5 @@
 .usersWrapper {
+    margin: 0 auto;
     width: fit-content;
     display: flex;
     flex-direction: column;
