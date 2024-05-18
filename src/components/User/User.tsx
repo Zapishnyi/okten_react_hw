@@ -9,12 +9,24 @@ interface IUser {
   userChoice: IUserChoice;
 }
 
-const User: FC<IUser> = ({ user, userChoice: { setChosenUser } }) => {
+const User: FC<IUser> = ({
+  user,
+  userChoice: { setChosenUser, chosenUser },
+}) => {
+  const onClickHandler = () => {
+    document
+      .querySelectorAll(".chosenUserDepending")
+      .forEach((e) => e.classList.remove("notActive"));
+    setChosenUser(user);
+  };
   return (
     <NavLink
       to={"/userDetails"}
-      className={styles.userCard}
-      onClick={() => setChosenUser(user)}
+      className={[
+        styles.userCard,
+        chosenUser?.id === user.id ? "pressed" : "",
+      ].join(" ")}
+      onClick={onClickHandler}
       state={user}
     >
       <span>{user.id}</span>

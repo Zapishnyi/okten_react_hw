@@ -11,9 +11,12 @@
     cursor: pointer;
     text-decoration: none;
     color: black;
-   
+
 }
 
+.userCard * {
+    pointer-events: none;
+}
 
 .userCard:hover {
     box-shadow: -3px 3px 8px rgba(0, 0, 0, 0.2);

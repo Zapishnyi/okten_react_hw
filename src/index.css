@@ -38,3 +38,7 @@ body .notActive {
     width: fit-content;
     align-self: center;
 }
+
+body .pressed {
+    background: #caebeb;
+}
