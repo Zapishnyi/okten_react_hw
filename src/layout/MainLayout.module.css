@@ -1,0 +1,13 @@
+.layOutWrapper {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.pagesContainer {
+    height: 100%;
+    display: flex;
+    overflow-y: auto;
+
+}

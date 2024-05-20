@@ -1,0 +1,20 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.usersWrapper {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    height: 100%;
+    flex: 1 1 20%;
+}
+
+.outlet {
+    display: flex;
+    height: 100%;
+    flex: 2 0 80%;
+
+
+}
