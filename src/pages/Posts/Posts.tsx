@@ -7,12 +7,13 @@ import styles from "./Posts.module.css";
 
 const Posts = () => {
   const location = useLocation();
+  console.log("Posts location", location.state);
   const [posts, setPosts] = useState<IPostProps[] | null>(null);
   useEffect(() => {
     placeHolderApi.getPosts(location.state).then(({ data }) => {
       setPosts(data);
     });
-  }, []);
+  }, [location]);
   return (
     <div className={styles.wrapper}>
       <div className={styles.postsWrapper}>

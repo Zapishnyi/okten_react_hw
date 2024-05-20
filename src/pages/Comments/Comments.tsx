@@ -12,7 +12,7 @@ const Comments = () => {
     placeHolderApi.getComments(location.state).then(({ data }) => {
       setComments(data);
     });
-  }, [location.state]);
+  }, [location]);
   return (
     <div className={styles.wrapper}>
       {comments &&

@@ -21,7 +21,7 @@ export const routerConfig = createBrowserRouter([
         children: [
           {
             path: "userPosts",
-            element: <UserPosts />,
+            element: <Posts />,
           },
         ],
       },
@@ -31,7 +31,7 @@ export const routerConfig = createBrowserRouter([
         children: [
           {
             path: "postComments",
-            element: <CommentsToPost />,
+            element: <Comments />,
           },
         ],
       },
