@@ -1,0 +1,75 @@
+.wrapper {
+    display: flex;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 20px;
+
+}
+
+.form label {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4px;
+    position: relative;
+
+}
+
+.form label p {;
+    position: absolute;
+    padding: 3px;
+    border-radius: 5px;
+    top: -2px;
+    right: 0;
+    box-shadow: 5px 5px 10px rgba(182, 182, 182, 0.69);
+    background: #ffe5e5;
+    animation: popup 0.5s;
+}
+
+@keyframes popup {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+
+}
+
+.form input {
+    font-size: 16px;
+    padding: 5px;
+
+}
+
+.form button {
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: auto;
+}
+
+.form label:has(label) > label {
+    margin-left: 20px;
+
+}
+
+.form label:has(textarea) {
+    height: 100%;
+    margin-bottom: 10px;
+}
+
+.form textarea {
+    resize: none;
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
+}
