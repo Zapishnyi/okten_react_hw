@@ -1,0 +1,11 @@
+.headerWrapper {
+    display: flex;
+    height: 100px;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    background: blanchedalmond;
+}
+
+.headerWrapper > a {
+}
