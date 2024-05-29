@@ -5,6 +5,10 @@ import LoginPage from "../pages/LoginPage/LoginPage";
 import RegisterPage from "../pages/RegisterPage/RegisterPage";
 import AuthLayout from "../hoc/AuthLayout/AuthLayout";
 import Cars from "../pages/Cars/Cars";
+import MeInfo from "../pages/Me/MeInfo";
+import CarAdd from "../pages/CarAdd/CarAdd";
+import CarFullUpdate from "../pages/CarFullUpdate/CarFullUpdate";
+import CarPartialUpdate from "../pages/CarPartalUpdate/CarPartialUpdate";
 
 export const routerConfig = createBrowserRouter([
   {
@@ -13,7 +17,9 @@ export const routerConfig = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to={"login"} />,
+        element: (
+          <Navigate to={"login"} state={{ username: "", password: "" }} />
+        ),
       },
       {
         element: <PublicLayout />,
@@ -34,6 +40,24 @@ export const routerConfig = createBrowserRouter([
           {
             path: "cars",
             element: <Cars />,
+            children: [
+              {
+                path: "create",
+                element: <CarAdd />,
+              },
+              {
+                path: "overwrite",
+                element: <CarFullUpdate />,
+              },
+              {
+                path: "update",
+                element: <CarPartialUpdate />,
+              },
+            ],
+          },
+          {
+            path: "me",
+            element: <MeInfo />,
           },
         ],
       },

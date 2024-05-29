@@ -1,7 +1,7 @@
 import Joi from "joi";
-import { IAuthProps } from "../models/IAuthProps";
+import { IRegisterProps } from "../models/IRegisterProps";
 
-const userValidator: Joi.ObjectSchema<IAuthProps> = Joi.object({
+const userValidator: Joi.ObjectSchema<IRegisterProps> = Joi.object({
   username: Joi.string()
     .pattern(/^[a-zA-Z_]*$/)
     .empty()

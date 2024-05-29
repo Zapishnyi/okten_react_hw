@@ -4,9 +4,11 @@
 }
 
 .form {
+    position: relative;
     width: 400px;
     display: flex;
     flex-direction: column;
+
 }
 
 .form label {

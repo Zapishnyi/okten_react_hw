@@ -7,7 +7,9 @@ const Header: FC = () => {
     <div className={styles.headerWrapper}>
       <NavLink to={"register"}>Register</NavLink>
       <NavLink to={"login"}>Login</NavLink>
+
       <NavLink to={"cars"}>Cars</NavLink>
+      <NavLink to={"me"}>Me</NavLink>
     </div>
   );
 };

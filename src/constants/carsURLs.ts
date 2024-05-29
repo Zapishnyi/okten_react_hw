@@ -1,5 +1,5 @@
 export const carsURLs = {
-  base: "http://owu.linkpc.net/carsAPI/v2",
+  base: "http://185.69.152.209/carsAPI/v2",
   users: "/users",
   auth: "/auth",
   authMe: "/auth/me",
