@@ -6,11 +6,7 @@ import { tokenRefreshTimer } from "../../services/TokenAutoRefreshService";
 
 const MainLayout: FC = () => {
   console.log(".");
-  document.addEventListener("visibilitychange", (e) => {
-    if (document.visibilityState === "hidden") {
-      clearInterval(tokenRefreshTimer);
-    }
-  });
+
   return (
     <div className={styles.wrapper}>
       <Outlet />
