@@ -1,4 +1,4 @@
-export default interface ITokenProps {
+export default interface ITokens {
   refresh: string;
   access: string;
 }

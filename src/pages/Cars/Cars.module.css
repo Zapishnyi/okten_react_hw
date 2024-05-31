@@ -1,0 +1,35 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    height: 80vh;
+}
+
+.cars {
+    /*height: 100%;*/
+}
+
+.cars > div {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.cars > a {
+    text-decoration: none;
+    color: #000000;
+    padding: 3px;
+    margin: 10px;
+    background: darkgray;
+    border-radius: 5px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+.outlet {
+    display: flex;
+    height: 100%;
+
+}

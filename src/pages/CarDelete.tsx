@@ -1,8 +1,8 @@
 import React from "react";
 
-const CarEditForm = () => {
+const CarDelete = () => {
   console.log(".");
   return <div></div>;
 };
 
-export default CarEditForm;
+export default CarDelete;
