@@ -1,19 +1,23 @@
 .wrapper {
     width: 100%;
     display: flex;
-    height: 80vh;
-}
-
-.cars {
-    /*height: 100%;*/
-}
-
-.cars > div {
-    height: 100%;
+    height: 90vh;
     overflow-y: auto;
 }
 
-.cars > a {
+.carsBlock {
+    /*height: 100%;*/
+}
+
+.cars {
+    display: flex;
+    flex-wrap: wrap;
+    width: 500px;
+    height: 70vh;
+    overflow-y: auto;
+}
+
+.carsBlock > a {
     text-decoration: none;
     color: #000000;
     padding: 3px;
@@ -30,6 +34,6 @@
 
 .outlet {
     display: flex;
-    height: 100%;
+
 
 }

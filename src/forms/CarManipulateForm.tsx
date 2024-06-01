@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useForm } from "react-hook-form";
 import ICarToSend from "../models/ICarToSend";
-import { authServices, publicServices } from "../services/cars.api.cervice";
+import { tokenHandledServices } from "../services/cars.api.cervice";
 import { useNavigate } from "react-router-dom";
 import {
   tokenAutoRefreshService,
@@ -25,7 +25,9 @@ const CarManipulateForm: FC<ICar> = (car?) => {
 
   const carCreate = async (formData: ICarToSend) => {
     try {
-      await authServices.createCar(formData).then(() => navigate("/cars"));
+      await tokenHandledServices
+        .createCar(formData)
+        .then(() => navigate("/cars"));
     } catch (err) {
       try {
         await tokenAutoRefreshService().then(() => carCreate(formData));
@@ -43,18 +45,17 @@ const CarManipulateForm: FC<ICar> = (car?) => {
       <form onSubmit={handleSubmit(carCreate)}>
         <label>
           Car brand:
-          <input type="text" {...register("brand")} />
+          <input type="text" autoComplete={"on"} {...register("brand")} />
           {errors.brand && <p>{errors.brand.message}</p>}
         </label>
         <label>
-          {" "}
           Car price:
-          <input type="text" {...register("price")} />
+          <input type="text" autoComplete={"on"} {...register("price")} />
           {errors.price && <p>{errors.price.message}</p>}
         </label>
         <label>
           Year of build:
-          <input type="text" {...register("year")} />
+          <input type="text" autoComplete={"on"} {...register("year")} />
           {errors.year && <p>{errors.year.message}</p>}
         </label>
 

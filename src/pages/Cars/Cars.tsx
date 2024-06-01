@@ -1,36 +1,58 @@
-import React, { useEffect, useState } from "react";
-import { authServices } from "../../services/cars.api.cervice";
+import React, { FC, Profiler, useEffect, useState } from "react";
+import { tokenHandledServices } from "../../services/cars.api.cervice";
 import ICar from "../../models/ICar";
-import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
+import {
+  NavLink,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import {
   tokenAutoRefreshService,
   tokenRefreshTimer,
 } from "../../services/TokenAutoRefreshService";
 import styles from "./Cars.module.css";
 import Car from "../../components/Car/Car";
+import Pagination from "../../components/Pagination/Pagination";
+import ICarPaginated from "../../models/ICarPaginated";
+import clearMarks from "../../logic/clearMarks";
+import IPage from "../../models/IPage";
 
-const Cars = () => {
+const Cars: FC = () => {
   console.log(".");
   const navigate = useNavigate();
   const trigger = useLocation();
-  const [cars, setCars] = useState<ICar[]>([]);
+  const [carsPaginatedObj, setCarsPaginatedObj] = useState<ICarPaginated>({
+    total_items: 0,
+    total_pages: 0,
+    prev: null,
+    next: null,
+    items: [],
+  });
 
-  const clearMarks = () => {
-    document
-      .querySelectorAll(".carLink")
-      .forEach((e) => e.classList.remove("pressed"));
+  const [query, setQuery] = useSearchParams({ page: "1" });
+
+  const paginationAction = (action: string) => {
+    switch (action) {
+      case "next":
+        setQuery({ ...carsPaginatedObj.next });
+        break;
+      case "prev":
+        setQuery({ ...carsPaginatedObj.prev });
+        break;
+    }
   };
 
   useEffect(() => {
     const getCarsWrapper = async () => {
       try {
-        await authServices
-          .getCars()
-          .then(({ data: { items } }) => setCars(items));
+        await tokenHandledServices
+          .getCars(query.get("page") || "1")
+          .then(({ data }) => setCarsPaginatedObj(data));
       } catch {
         try {
-          await tokenAutoRefreshService();
-          await getCarsWrapper();
+          await tokenAutoRefreshService().then(() => getCarsWrapper());
         } catch {
           clearInterval(tokenRefreshTimer);
           navigate("/login");
@@ -38,15 +60,22 @@ const Cars = () => {
       }
     };
     getCarsWrapper();
-  }, [trigger]);
+  }, [trigger, query]);
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.cars}>
+      <div className={styles.carsBlock}>
         <NavLink to={"carAdd"} onClick={clearMarks}>
           Create a car
         </NavLink>
-        <div>{cars && cars.map((car) => <Car key={car.id} car={car} />)}</div>
+        <div className={styles.cars}>
+          {carsPaginatedObj.items &&
+            carsPaginatedObj.items.map((car) => <Car key={car.id} car={car} />)}
+        </div>
+        <Pagination
+          paginationAction={paginationAction}
+          carPaginatedObj={carsPaginatedObj}
+        />
       </div>
       <div className={styles.outlet}>
         <Outlet />

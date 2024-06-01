@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { urls } from "../constants/urls";
 import IUserCredentials from "../models/IUserCredentials";
 import IUserInfo from "../models/IUserInfo";
@@ -25,33 +25,37 @@ axiosInstance.interceptors.request.use((request) => {
   return request;
 });
 
-interface IPublicService {
+interface IAuthServices {
   register: (
     credentials: IUserCredentials,
   ) => Promise<AxiosResponse<IUserInfo>>;
   login: (credentials: IUserCredentials) => Promise<AxiosResponse<ITokens>>;
 }
 
-interface IAuthService {
+interface ITokenHandledServices {
   refreshTokens: (refreshToken: string) => Promise<AxiosResponse<ITokens>>;
-  getCars: () => Promise<AxiosResponse<ICarPaginated>>;
+  getCars: (page: string) => Promise<AxiosResponse<ICarPaginated>>;
   getMe: () => Promise<AxiosResponse<IUserInfo>>;
   createCar: (newCar: ICarToSend) => Promise<AxiosResponse<ICar>>;
   deleteCar: (id: number) => Promise<AxiosResponse<ICar>>;
+  editCar: (id: number, newCar: ICarToSend) => Promise<AxiosResponse<ICar>>;
+  patchCar: (id: number, newCar: ICarToSend) => Promise<AxiosResponse<ICar>>;
 }
 
-const publicServices: IPublicService = {
+const authServices: IAuthServices = {
   register: (credentials) => axiosInstance.post(urls.users, credentials),
   login: (credentials) => axiosInstance.post(urls.auth, credentials),
 };
 
-const authServices: IAuthService = {
+const tokenHandledServices: ITokenHandledServices = {
   refreshTokens: (refreshToken) =>
     axiosInstance.post(urls.authRefresh, { refresh: refreshToken }),
-  getCars: () => axiosInstance.get(urls.cars),
+  getCars: (page) => axiosInstance.get(urls.cars, { params: { page: page } }),
   getMe: () => axiosInstance.get(urls.authMe),
   createCar: (newCar) => axiosInstance.post(urls.cars, newCar),
-  deleteCar: (id) => axiosInstance.delete(urls.carDelete(id)),
+  deleteCar: (id) => axiosInstance.delete(urls.carManipulate(id)),
+  editCar: (id, newCar) => axiosInstance.put(urls.carManipulate(id), newCar),
+  patchCar: (id, newCar) => axiosInstance.patch(urls.carManipulate(id), newCar),
 };
 
-export { publicServices, authServices };
+export { authServices, tokenHandledServices };

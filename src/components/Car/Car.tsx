@@ -2,11 +2,15 @@ import React, { FC, MouseEventHandler } from "react";
 import ICar from "../../models/ICar";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import styles from "./Car.module.css";
-import { authServices } from "../../services/cars.api.cervice";
+import {
+  authServices,
+  tokenHandledServices,
+} from "../../services/cars.api.cervice";
 import {
   tokenAutoRefreshService,
   tokenRefreshTimer,
 } from "../../services/TokenAutoRefreshService";
+import clearMarks from "../../logic/clearMarks";
 
 interface ICarProps {
   car: ICar;
@@ -16,16 +20,16 @@ const Car: FC<ICarProps> = ({ car }) => {
   const navigate = useNavigate();
 
   const buttonMark: MouseEventHandler<HTMLAnchorElement> = (e) => {
-    document
-      .querySelectorAll(".carLink")
-      .forEach((e) => e.classList.remove("pressed"));
+    clearMarks();
     const pressedLink = e.target as HTMLAnchorElement;
     pressedLink.classList.add("pressed");
   };
 
   const deleteHandle: MouseEventHandler<HTMLButtonElement> = async (e) => {
     try {
-      await authServices.deleteCar(car.id).then(() => navigate("/cars"));
+      await tokenHandledServices
+        .deleteCar(car.id)
+        .then(() => navigate("/cars"));
     } catch (err) {
       try {
         await tokenAutoRefreshService().then(() => deleteHandle(e));

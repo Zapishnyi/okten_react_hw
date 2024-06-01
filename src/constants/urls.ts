@@ -5,8 +5,5 @@ export const urls = {
   authMe: "/auth/me",
   authRefresh: "/auth/refresh",
   cars: "/cars",
-  carDelete: (id: number) => `${urls.cars}/${id.toString()}`,
-  car(id: number): string {
-    return `${this.cars}/${id}`;
-  },
+  carManipulate: (id: number) => `${urls.cars}/${id.toString()}`,
 };

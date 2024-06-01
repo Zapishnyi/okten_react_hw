@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { authServices } from "../services/cars.api.cervice";
+import { tokenHandledServices } from "../services/cars.api.cervice";
 import {
   tokenAutoRefreshService,
   tokenRefreshTimer,
@@ -14,7 +14,7 @@ const UserInfo = () => {
   useEffect(() => {
     const getMEWrapper = async () => {
       try {
-        await authServices.getMe().then(({ data }) => setMe(data));
+        await tokenHandledServices.getMe().then(({ data }) => setMe(data));
       } catch {
         try {
           await tokenAutoRefreshService().then(() => getMEWrapper());

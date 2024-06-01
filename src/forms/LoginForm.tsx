@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import IUserCredentials from "../models/IUserCredentials";
-import { publicServices } from "../services/cars.api.cervice";
+import { authServices } from "../services/cars.api.cervice";
 import { localStorageService } from "../services/localStorageService";
 import { useNavigate } from "react-router-dom";
 import { tokenAutoRefreshService } from "../services/TokenAutoRefreshService";
@@ -26,7 +26,7 @@ const LoginForm: FC<IProps> = ({ userCredentials: { username, password } }) => {
 
   const Login = async (LoginData: IUserCredentials) => {
     try {
-      await publicServices.login(LoginData).then(({ data }) => {
+      await authServices.login(LoginData).then(({ data }) => {
         localStorageService.saveTokens(data);
       });
       navigate("/cars");

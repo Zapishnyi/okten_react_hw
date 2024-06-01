@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import IUserCredentials from "../models/IUserCredentials";
-import { publicServices } from "../services/cars.api.cervice";
+import { authServices } from "../services/cars.api.cervice";
 import { useNavigate } from "react-router-dom";
 import { joiResolver } from "@hookform/resolvers/joi";
 import userValidator from "../validators/user.validator";
@@ -21,7 +21,7 @@ const RegisterForm = () => {
 
   const Register = async (formData: IUserCredentials) => {
     try {
-      await publicServices
+      await authServices
         .register(formData)
         .then((registeredUserInfo) => registeredUserInfo);
       navigate("/login", { state: formData });

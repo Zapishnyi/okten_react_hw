@@ -1,12 +1,11 @@
 import { localStorageService } from "./localStorageService";
-import { authServices } from "./cars.api.cervice";
-import { useNavigate } from "react-router-dom";
+import { tokenHandledServices } from "./cars.api.cervice";
 
 export let tokenRefreshTimer: NodeJS.Timer;
 
 export const tokenAutoRefreshService = async () => {
   clearInterval(tokenRefreshTimer);
-  return await authServices
+  return await tokenHandledServices
     .refreshTokens(localStorageService.getRefreshToken())
     .then(({ data }) => {
       localStorageService.saveTokens(data);
