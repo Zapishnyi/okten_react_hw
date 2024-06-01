@@ -2,29 +2,47 @@ import React, { FC } from "react";
 import styles from "./Pagination.module.css";
 import IPage from "../../models/IPage";
 import ICarPaginated from "../../models/ICarPaginated";
+import { useSearchParams } from "react-router-dom";
 
 interface IProps {
-  paginationAction: (action: string) => void;
-  carPaginatedObj: ICarPaginated;
+  carsPaginatedObj: ICarPaginated;
 }
 
-const Pagination: FC<IProps> = ({ paginationAction, carPaginatedObj }) => {
+const Pagination: FC<IProps> = ({
+  carsPaginatedObj: { prev, next, total_pages, total_items },
+}) => {
+  const [query, setQuery] = useSearchParams({ page: "1" });
+
+  const paginationAction = (action: string) => {
+    switch (action) {
+      case "next":
+        setQuery({ ...next });
+        break;
+      case "prev":
+        setQuery({ ...prev });
+        break;
+    }
+  };
   return (
     <div className={styles.paginationWrapper}>
       <button
-        disabled={!carPaginatedObj.prev}
+        disabled={!prev}
         onClick={() => {
           paginationAction("prev");
         }}
       >
         Prev
       </button>
-      <p>
-        Page {carPaginatedObj.prev ? +carPaginatedObj.prev.page + 1 + "" : "1"}{" "}
-        of {carPaginatedObj.total_pages} pages
-      </p>
+      <div>
+        <p>
+          Page {prev ? +prev.page + 1 + "" : "1"} of
+          {total_pages}
+        </p>
+        <p> Total : {total_items} car/cars</p>
+      </div>
+
       <button
-        disabled={!carPaginatedObj.next}
+        disabled={!next}
         onClick={() => {
           paginationAction("next");
         }}

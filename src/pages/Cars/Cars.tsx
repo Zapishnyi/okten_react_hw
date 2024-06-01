@@ -1,6 +1,6 @@
-import React, { FC, Profiler, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { tokenHandledServices } from "../../services/cars.api.cervice";
-import ICar from "../../models/ICar";
+
 import {
   NavLink,
   Outlet,
@@ -17,7 +17,6 @@ import Car from "../../components/Car/Car";
 import Pagination from "../../components/Pagination/Pagination";
 import ICarPaginated from "../../models/ICarPaginated";
 import clearMarks from "../../logic/clearMarks";
-import IPage from "../../models/IPage";
 
 const Cars: FC = () => {
   console.log(".");
@@ -31,18 +30,7 @@ const Cars: FC = () => {
     items: [],
   });
 
-  const [query, setQuery] = useSearchParams({ page: "1" });
-
-  const paginationAction = (action: string) => {
-    switch (action) {
-      case "next":
-        setQuery({ ...carsPaginatedObj.next });
-        break;
-      case "prev":
-        setQuery({ ...carsPaginatedObj.prev });
-        break;
-    }
-  };
+  const [query, setQuery] = useSearchParams();
 
   useEffect(() => {
     const getCarsWrapper = async () => {
@@ -72,10 +60,7 @@ const Cars: FC = () => {
           {carsPaginatedObj.items &&
             carsPaginatedObj.items.map((car) => <Car key={car.id} car={car} />)}
         </div>
-        <Pagination
-          paginationAction={paginationAction}
-          carPaginatedObj={carsPaginatedObj}
-        />
+        <Pagination carsPaginatedObj={carsPaginatedObj} />
       </div>
       <div className={styles.outlet}>
         <Outlet />
