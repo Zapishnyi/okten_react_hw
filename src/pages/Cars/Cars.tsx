@@ -1,4 +1,11 @@
-import React, { FC, useEffect, useState } from "react";
+import React, {
+  createContext,
+  FC,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { tokenHandledServices } from "../../services/cars.api.cervice";
 
 import {
@@ -6,6 +13,7 @@ import {
   Outlet,
   useLocation,
   useNavigate,
+  useOutletContext,
   useSearchParams,
 } from "react-router-dom";
 import {
@@ -21,7 +29,6 @@ import clearMarks from "../../logic/pressedButtonMarksClear";
 const Cars: FC = () => {
   console.log(".");
   const navigate = useNavigate();
-  const trigger = useLocation();
   const [carsPaginatedObj, setCarsPaginatedObj] = useState<ICarPaginated>({
     total_items: 0,
     total_pages: 0,
@@ -31,7 +38,7 @@ const Cars: FC = () => {
   });
 
   const [query, setQuery] = useSearchParams();
-
+  const trigger = useLocation();
   useEffect(() => {
     const getCarsWrapper = async () => {
       try {
@@ -48,12 +55,18 @@ const Cars: FC = () => {
       }
     };
     getCarsWrapper();
-  }, [trigger, query]);
+  }, [query, trigger]);
+
+  const setPage = useOutletContext() as React.Dispatch<
+    React.SetStateAction<string>
+  >;
+
+  setPage(query.get("page") || "1");
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.carsBlock}>
-        <NavLink to={"carAdd"} onClick={clearMarks}>
+        <NavLink to={`carAdd?page=${query.get("page")}`} onClick={clearMarks}>
           Create a car
         </NavLink>
         <div className={styles.cars}>

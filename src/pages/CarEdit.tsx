@@ -1,5 +1,5 @@
-import React, { FC, useEffect } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import React, { FC } from "react";
+import { useLocation } from "react-router-dom";
 import CarManipulateForm from "../forms/CarManipulateForm";
 import { tokenHandledServices } from "../services/cars.api.cervice";
 

@@ -6,7 +6,6 @@ import { localStorageService } from "../services/localStorageService";
 import { useNavigate } from "react-router-dom";
 import { tokenAutoRefreshService } from "../services/TokenAutoRefreshService";
 import { AxiosError } from "axios";
-import { isDisabled } from "@testing-library/user-event/dist/utils";
 
 interface IProps {
   userCredentials: IUserCredentials;
@@ -29,9 +28,9 @@ const LoginForm: FC<IProps> = ({ userCredentials: { username, password } }) => {
     try {
       await authServices.login(LoginData).then(({ data }) => {
         localStorageService.saveTokens(data);
+        tokenAutoRefreshService();
       });
-      navigate("/cars");
-      tokenAutoRefreshService();
+      navigate("/cars?page=1");
     } catch (err) {
       const errorMessage = err as AxiosError<IErrorDetails>;
       setServerError(errorMessage.response?.data.detail || "");

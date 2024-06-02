@@ -1,8 +1,8 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import { useForm } from "react-hook-form";
 import ICarToSend from "../models/ICarToSend";
-import { tokenHandledServices } from "../services/cars.api.cervice";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+
+import { useNavigate, useSearchParams } from "react-router-dom";
 import {
   tokenAutoRefreshService,
   tokenRefreshTimer,
@@ -40,10 +40,13 @@ const CarManipulateForm: FC<IManipulate> = ({
     resolver: joiResolver(carValidator),
     defaultValues: { year: car?.year, price: car?.price, brand: car?.brand },
   });
+  const [query, useQuery] = useSearchParams();
 
   const carManipulate = async (formData: ICarToSend) => {
     try {
-      await manipulateAction(formData, id).then(() => navigate("/cars"));
+      await manipulateAction(formData, id).then(() =>
+        navigate(`/cars?page=${query.get("page")}`),
+      );
     } catch {
       try {
         await tokenAutoRefreshService().then(() => carManipulate(formData));

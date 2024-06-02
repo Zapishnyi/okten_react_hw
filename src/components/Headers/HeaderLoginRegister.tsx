@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Header.module.css";
 import { NavLink } from "react-router-dom";
 
-const HeaderPublic = () => {
+const HeaderLoginRegister = () => {
   console.log(".");
   return (
     <div className={styles.wrapper}>
@@ -12,4 +12,4 @@ const HeaderPublic = () => {
   );
 };
 
-export default HeaderPublic;
+export default HeaderLoginRegister;

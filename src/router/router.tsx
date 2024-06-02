@@ -2,16 +2,15 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout/MainLayout";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
-import AuthLayout from "../layouts/AuthLayout/AuthLayout";
-import PublicLayout from "../layouts/PublicLayout/PublicLayout";
+import TokenHandledLayout from "../layouts/TokenHandledLayout/TokenHandledLayout";
+import RegisterLoginLayout from "../layouts/RegisterLoginLayout/RegisterLoginLayout";
 import Cars from "../pages/Cars/Cars";
 
 import LogOut from "../pages/LogOut";
-import UserInfo from "../pages/UserInfo";
+import UserInfo from "../pages/UserInfo/UserInfo";
 import CarCreate from "../pages/CarCreate";
 import CarFullUpdate from "../pages/CarFullUpdate";
 import CarEdit from "../pages/CarEdit";
-import CarDelete from "../pages/CarDelete";
 
 export const routerConfig = createBrowserRouter([
   {
@@ -23,7 +22,7 @@ export const routerConfig = createBrowserRouter([
         element: <Navigate to={"login"} />,
       },
       {
-        element: <PublicLayout />,
+        element: <RegisterLoginLayout />,
         children: [
           {
             path: "register",
@@ -36,7 +35,7 @@ export const routerConfig = createBrowserRouter([
         ],
       },
       {
-        element: <AuthLayout />,
+        element: <TokenHandledLayout />,
         children: [
           {
             path: "cars",
@@ -53,10 +52,6 @@ export const routerConfig = createBrowserRouter([
               {
                 path: "carEdit",
                 element: <CarEdit />,
-              },
-              {
-                path: "delete",
-                element: <CarDelete />,
               },
             ],
           },

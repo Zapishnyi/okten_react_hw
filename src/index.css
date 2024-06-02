@@ -18,9 +18,11 @@ code {
     padding: 0;
 }
 
-.active {
-    font-weight: bold;
+body div .active {
+    background: black;
+    color: white;
 }
+
 
 form {
     position: relative;
@@ -34,12 +36,13 @@ form {
 }
 
 
-form label, form button {
+form label {
     display: flex;
     position: relative;
     flex-direction: column;
     justify-content: space-between;
     margin: 0 0 30px 0;
+    font-size: 16px;
 }
 
 form p {
@@ -48,11 +51,39 @@ form p {
     right: 0;
 }
 
-form button {
-    margin-top: 10px;
+form input {
+    font-size: 16px;
+    padding: 5px;
 }
 
-body .pressed {
+form button {
+    margin-top: 10px;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+.carLink {
+    text-decoration: none;
+    color: #000000;
+    padding: 3px;
+    margin: 3px 0;
+    background: #e0e0e0;
+    border-radius: 5px;
+    border: 1px solid #979797;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+body div .pressedLink {
     transition: 0.3s;
-    background: #ff9f9f !important;
+    background: #ffffff;
+}
+
+body .pressedWrapper {
+    transition: 0.3s;
+    background: #ffdbdb;
 }

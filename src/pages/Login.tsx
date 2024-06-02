@@ -13,7 +13,7 @@ const Login = () => {
 
   locationData.state
     ? (userCredentials = locationData.state)
-    : (userCredentials = { username: "", password: "" });
+    : (userCredentials = { username: "Freddy", password: "F#23ddyy" });
 
   return (
     <div>

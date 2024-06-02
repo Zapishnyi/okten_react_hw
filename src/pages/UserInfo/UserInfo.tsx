@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { tokenHandledServices } from "../services/cars.api.cervice";
+import { tokenHandledServices } from "../../services/cars.api.cervice";
 import {
   tokenAutoRefreshService,
   tokenRefreshTimer,
-} from "../services/TokenAutoRefreshService";
-import IUserInfo from "../models/IUserInfo";
+} from "../../services/TokenAutoRefreshService";
+import IUserInfo from "../../models/IUserInfo";
 import { useNavigate } from "react-router-dom";
+import styles from "./UserInfo.module.css";
 
 const UserInfo = () => {
   console.log(".");
@@ -31,7 +32,7 @@ const UserInfo = () => {
   return (
     <div>
       {me && (
-        <div>
+        <div className={styles.userInfo}>
           <p>User ID: {me.id}</p>
           <p>Username: {me.username} </p>
           <p>Created date: {me.created}</p>

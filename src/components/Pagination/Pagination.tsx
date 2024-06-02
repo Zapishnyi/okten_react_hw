@@ -1,8 +1,7 @@
 import React, { FC } from "react";
 import styles from "./Pagination.module.css";
-import IPage from "../../models/IPage";
 import ICarPaginated from "../../models/ICarPaginated";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 interface IProps {
   carsPaginatedObj: ICarPaginated;

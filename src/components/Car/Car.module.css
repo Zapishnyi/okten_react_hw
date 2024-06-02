@@ -19,7 +19,7 @@
         transition: 0.5s;
         opacity: 0;
 
-        a, button {
+        button {
             text-decoration: none;
             color: #000000;
             padding: 3px;
@@ -38,7 +38,7 @@
 
 .wrapper:hover .buttonsBox {
     right: 10px;
-    opacity: 0.8;
+    opacity: 1;
 }
 
 
