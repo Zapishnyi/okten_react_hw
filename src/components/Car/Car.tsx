@@ -1,16 +1,13 @@
-import React, { FC, MouseEventHandler } from "react";
+import React, { createContext, FC, MouseEventHandler, useContext } from "react";
 import ICar from "../../models/ICar";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Car.module.css";
-import {
-  authServices,
-  tokenHandledServices,
-} from "../../services/cars.api.cervice";
+import { tokenHandledServices } from "../../services/cars.api.cervice";
 import {
   tokenAutoRefreshService,
   tokenRefreshTimer,
 } from "../../services/TokenAutoRefreshService";
-import clearMarks from "../../logic/clearMarks";
+import buttonMarkAdd from "../../logic/pressedButtonMarkAdd";
 
 interface ICarProps {
   car: ICar;
@@ -18,12 +15,6 @@ interface ICarProps {
 
 const Car: FC<ICarProps> = ({ car }) => {
   const navigate = useNavigate();
-
-  const buttonMark: MouseEventHandler<HTMLAnchorElement> = (e) => {
-    clearMarks();
-    const pressedLink = e.target as HTMLAnchorElement;
-    pressedLink.classList.add("pressed");
-  };
 
   const deleteHandle: MouseEventHandler<HTMLButtonElement> = async (e) => {
     try {
@@ -47,23 +38,25 @@ const Car: FC<ICarProps> = ({ car }) => {
       <p>Price: {car.price}</p>
       <p>Build year: {car.year}</p>
       <p>Photo: string {car.photo}</p>
-      <Link
-        onClick={buttonMark}
-        to={"carFullUpdate"}
-        className={"carLink"}
-        state={car}
-      >
-        Overwrite
-      </Link>
-      <Link
-        onClick={buttonMark}
-        to={"carEdit"}
-        className={"carLink"}
-        state={car}
-      >
-        Edit
-      </Link>
-      <button onClick={deleteHandle}>Delete</button>
+      <div className={styles.buttonsBox}>
+        <Link
+          onClick={buttonMarkAdd}
+          to={"carFullUpdate"}
+          className={"carLink"}
+          state={car}
+        >
+          Overwrite
+        </Link>
+        <Link
+          onClick={buttonMarkAdd}
+          to={"carEdit"}
+          className={"carLink"}
+          state={car}
+        >
+          Edit
+        </Link>
+        <button onClick={deleteHandle}>Delete</button>
+      </div>
     </div>
   );
 };

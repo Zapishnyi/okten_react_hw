@@ -1,36 +1,52 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import ICarToSend from "../models/ICarToSend";
 import { tokenHandledServices } from "../services/cars.api.cervice";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import {
   tokenAutoRefreshService,
   tokenRefreshTimer,
 } from "../services/TokenAutoRefreshService";
 import { joiResolver } from "@hookform/resolvers/joi";
 import carValidator from "../validators/car.validator";
+import { AxiosResponse } from "axios";
+import ICar from "../models/ICar";
 
-interface ICar {
-  car?: ICarToSend | null;
+interface IManipulate {
+  car: ICarToSend | null;
+  title: string;
+  manipulateAction: (
+    formData: ICarToSend,
+    id: number,
+  ) => Promise<AxiosResponse<ICar>>;
+  id: number;
 }
 
-const CarManipulateForm: FC<ICar> = (car?) => {
+const CarManipulateForm: FC<IManipulate> = ({
+  title,
+  car,
+  manipulateAction,
+  id,
+}) => {
+  console.log(".");
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<ICarToSend>({ mode: "all", resolver: joiResolver(carValidator) });
+  } = useForm<ICarToSend>({
+    mode: "all",
+    resolver: joiResolver(carValidator),
+    defaultValues: { year: car?.year, price: car?.price, brand: car?.brand },
+  });
 
-  const navigate = useNavigate();
-
-  const carCreate = async (formData: ICarToSend) => {
+  const carManipulate = async (formData: ICarToSend) => {
     try {
-      await tokenHandledServices
-        .createCar(formData)
-        .then(() => navigate("/cars"));
-    } catch (err) {
+      await manipulateAction(formData, id).then(() => navigate("/cars"));
+    } catch {
       try {
-        await tokenAutoRefreshService().then(() => carCreate(formData));
+        await tokenAutoRefreshService().then(() => carManipulate(formData));
       } catch {
         console.log("Tokens refresh failed");
         clearInterval(tokenRefreshTimer);
@@ -41,8 +57,8 @@ const CarManipulateForm: FC<ICar> = (car?) => {
 
   return (
     <div>
-      <h3>Create a car</h3>
-      <form onSubmit={handleSubmit(carCreate)}>
+      <h3>{title}</h3>
+      <form onSubmit={handleSubmit(carManipulate)}>
         <label>
           Car brand:
           <input type="text" autoComplete={"on"} {...register("brand")} />
@@ -59,7 +75,7 @@ const CarManipulateForm: FC<ICar> = (car?) => {
           {errors.year && <p>{errors.year.message}</p>}
         </label>
 
-        <button>Save</button>
+        <button disabled={!isValid}>Save</button>
       </form>
     </div>
   );

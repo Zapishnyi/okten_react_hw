@@ -16,7 +16,7 @@ import styles from "./Cars.module.css";
 import Car from "../../components/Car/Car";
 import Pagination from "../../components/Pagination/Pagination";
 import ICarPaginated from "../../models/ICarPaginated";
-import clearMarks from "../../logic/clearMarks";
+import clearMarks from "../../logic/pressedButtonMarksClear";
 
 const Cars: FC = () => {
   console.log(".");

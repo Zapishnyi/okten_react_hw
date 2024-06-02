@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import { urls } from "../constants/urls";
 import IUserCredentials from "../models/IUserCredentials";
 import IUserInfo from "../models/IUserInfo";
@@ -36,10 +36,10 @@ interface ITokenHandledServices {
   refreshTokens: (refreshToken: string) => Promise<AxiosResponse<ITokens>>;
   getCars: (page: string) => Promise<AxiosResponse<ICarPaginated>>;
   getMe: () => Promise<AxiosResponse<IUserInfo>>;
-  createCar: (newCar: ICarToSend) => Promise<AxiosResponse<ICar>>;
+  createCar: (newCar: ICarToSend, id: number) => Promise<AxiosResponse<ICar>>;
   deleteCar: (id: number) => Promise<AxiosResponse<ICar>>;
-  editCar: (id: number, newCar: ICarToSend) => Promise<AxiosResponse<ICar>>;
-  patchCar: (id: number, newCar: ICarToSend) => Promise<AxiosResponse<ICar>>;
+  editCar: (newCar: ICarToSend, id: number) => Promise<AxiosResponse<ICar>>;
+  patchCar: (newCar: ICarToSend, id: number) => Promise<AxiosResponse<ICar>>;
 }
 
 const authServices: IAuthServices = {
@@ -52,10 +52,10 @@ const tokenHandledServices: ITokenHandledServices = {
     axiosInstance.post(urls.authRefresh, { refresh: refreshToken }),
   getCars: (page) => axiosInstance.get(urls.cars, { params: { page: page } }),
   getMe: () => axiosInstance.get(urls.authMe),
-  createCar: (newCar) => axiosInstance.post(urls.cars, newCar),
+  createCar: (newCar, id) => axiosInstance.post(urls.cars, newCar),
   deleteCar: (id) => axiosInstance.delete(urls.carManipulate(id)),
-  editCar: (id, newCar) => axiosInstance.put(urls.carManipulate(id), newCar),
-  patchCar: (id, newCar) => axiosInstance.patch(urls.carManipulate(id), newCar),
+  editCar: (newCar, id) => axiosInstance.put(urls.carManipulate(id), newCar),
+  patchCar: (newCar, id) => axiosInstance.patch(urls.carManipulate(id), newCar),
 };
 
 export { authServices, tokenHandledServices };

@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import styles from "./Pagination.module.css";
 import IPage from "../../models/IPage";
 import ICarPaginated from "../../models/ICarPaginated";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 interface IProps {
   carsPaginatedObj: ICarPaginated;
@@ -11,6 +11,8 @@ interface IProps {
 const Pagination: FC<IProps> = ({
   carsPaginatedObj: { prev, next, total_pages, total_items },
 }) => {
+  console.log(".");
+
   const [query, setQuery] = useSearchParams({ page: "1" });
 
   const paginationAction = (action: string) => {
@@ -35,8 +37,7 @@ const Pagination: FC<IProps> = ({
       </button>
       <div>
         <p>
-          Page {prev ? +prev.page + 1 + "" : "1"} of
-          {total_pages}
+          Page {prev ? +prev.page + 1 + "" : "1"} of {total_pages}
         </p>
         <p> Total : {total_items} car/cars</p>
       </div>

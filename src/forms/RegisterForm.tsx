@@ -47,7 +47,7 @@ const RegisterForm = () => {
         {/*  Confirm password*/}
         {/*  <input type="text" autoComplete="on" {...register("rePassword")} />*/}
         {/*</label>*/}
-        <button>Register</button>
+        <button disabled={!isValid}>Register</button>
       </form>
     </div>
   );

@@ -6,11 +6,15 @@ import ILocation from "../models/ILocation";
 
 const Login = () => {
   console.log(".");
+
   const locationData: ILocation<IUserCredentials> = useLocation();
+
   let userCredentials;
+
   locationData.state
     ? (userCredentials = locationData.state)
     : (userCredentials = { username: "", password: "" });
+
   return (
     <div>
       <LoginForm userCredentials={userCredentials} />

@@ -1,5 +1,5 @@
 export default interface ICarToSend {
   brand: string;
-  price: number;
-  year: number;
+  price: number | null;
+  year: number | null;
 }

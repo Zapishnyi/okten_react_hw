@@ -1,12 +1,28 @@
 import React from "react";
-import CarEditForm from "../forms/CarEditForm";
+
 import CarManipulateForm from "../forms/CarManipulateForm";
+import ICarToSend from "../models/ICarToSend";
+import { tokenHandledServices } from "../services/cars.api.cervice";
+import { useSearchParams } from "react-router-dom";
 
 const CarCreate = () => {
   console.log(".");
+  const car: ICarToSend = {
+    brand: "",
+    price: null,
+    year: null,
+  };
+
+  const manipulateAction = tokenHandledServices.createCar;
+
   return (
     <div>
-      <CarManipulateForm />
+      <CarManipulateForm
+        title={"Create a car"}
+        car={car}
+        manipulateAction={manipulateAction}
+        id={1}
+      />
     </div>
   );
 };

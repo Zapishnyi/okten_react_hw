@@ -1,12 +1,26 @@
-import React, { FC } from "react";
-import { useLocation } from "react-router-dom";
-import ICarToSend from "../models/ICarToSend";
+import React, { FC, useRef } from "react";
+import { useLocation, useSearchParams } from "react-router-dom";
+
 import CarManipulateForm from "../forms/CarManipulateForm";
+import { tokenHandledServices } from "../services/cars.api.cervice";
 
 const CarFullUpdate: FC = () => {
-  const car = useLocation();
   console.log(".");
-  return <div>{/*<CarManipulateForm car={car} />*/}</div>;
+  const { state } = useLocation();
+
+  return (
+    <div>
+      {state?.id && (
+        <CarManipulateForm
+          key={state.id}
+          car={state}
+          title={"Rewrite"}
+          manipulateAction={tokenHandledServices.editCar}
+          id={state.id}
+        />
+      )}
+    </div>
+  );
 };
 
 export default CarFullUpdate;

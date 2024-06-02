@@ -12,8 +12,9 @@
 .cars {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
     width: 500px;
-    height: 70vh;
+    height: 69vh;
     overflow-y: auto;
 }
 
