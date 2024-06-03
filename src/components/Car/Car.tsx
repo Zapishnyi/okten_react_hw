@@ -6,7 +6,7 @@ import { tokenHandledServices } from "../../services/cars.api.cervice";
 import {
   tokenAutoRefreshService,
   tokenRefreshTimer,
-} from "../../services/TokenAutoRefreshService";
+} from "../../services/tokenAutoRefreshService";
 import buttonMarkAdd from "../../logic/pressedButtonMarkAdd";
 
 interface ICarProps {
@@ -23,7 +23,9 @@ const Car: FC<ICarProps> = ({ car }) => {
       navigate(`/cars?page=${query.get("page")}`);
     } catch (err) {
       try {
-        await tokenAutoRefreshService().then(() => deleteHandle(e));
+        await tokenAutoRefreshService("externalCall").then(() =>
+          deleteHandle(e),
+        );
       } catch {
         clearInterval(tokenRefreshTimer);
         navigate("/login");

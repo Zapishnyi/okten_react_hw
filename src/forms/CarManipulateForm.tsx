@@ -6,7 +6,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import {
   tokenAutoRefreshService,
   tokenRefreshTimer,
-} from "../services/TokenAutoRefreshService";
+} from "../services/tokenAutoRefreshService";
 import { joiResolver } from "@hookform/resolvers/joi";
 import carValidator from "../validators/car.validator";
 import { AxiosResponse } from "axios";
@@ -49,7 +49,9 @@ const CarManipulateForm: FC<IManipulate> = ({
       );
     } catch {
       try {
-        await tokenAutoRefreshService().then(() => carManipulate(formData));
+        await tokenAutoRefreshService("externalCall").then(() =>
+          carManipulate(formData),
+        );
       } catch {
         console.log("Tokens refresh failed");
         clearInterval(tokenRefreshTimer);

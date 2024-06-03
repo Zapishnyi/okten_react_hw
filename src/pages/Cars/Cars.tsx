@@ -19,7 +19,7 @@ import {
 import {
   tokenAutoRefreshService,
   tokenRefreshTimer,
-} from "../../services/TokenAutoRefreshService";
+} from "../../services/tokenAutoRefreshService";
 import styles from "./Cars.module.css";
 import Car from "../../components/Car/Car";
 import Pagination from "../../components/Pagination/Pagination";
@@ -47,7 +47,9 @@ const Cars: FC = () => {
           .then(({ data }) => setCarsPaginatedObj(data));
       } catch {
         try {
-          await tokenAutoRefreshService().then(() => getCarsWrapper());
+          await tokenAutoRefreshService("externalCall").then(() =>
+            getCarsWrapper(),
+          );
         } catch {
           clearInterval(tokenRefreshTimer);
           navigate("/login");

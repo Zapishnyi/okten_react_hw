@@ -4,7 +4,7 @@ import IUserCredentials from "../models/IUserCredentials";
 import { authServices } from "../services/cars.api.cervice";
 import { localStorageService } from "../services/localStorageService";
 import { useNavigate } from "react-router-dom";
-import { tokenAutoRefreshService } from "../services/TokenAutoRefreshService";
+import { tokenAutoRefreshService } from "../services/tokenAutoRefreshService";
 import { AxiosError } from "axios";
 
 interface IProps {
@@ -28,7 +28,7 @@ const LoginForm: FC<IProps> = ({ userCredentials: { username, password } }) => {
     try {
       await authServices.login(LoginData).then(({ data }) => {
         localStorageService.saveTokens(data);
-        tokenAutoRefreshService();
+        tokenAutoRefreshService("externalCall");
       });
       navigate("/cars?page=1");
     } catch (err) {

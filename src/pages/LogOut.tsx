@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from "react";
-import { tokenRefreshTimer } from "../services/TokenAutoRefreshService";
+import { tokenRefreshTimer } from "../services/tokenAutoRefreshService";
 import { useNavigate } from "react-router-dom";
 import { localStorageService } from "../services/localStorageService";
 

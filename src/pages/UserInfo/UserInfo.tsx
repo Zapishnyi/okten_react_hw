@@ -3,7 +3,7 @@ import { tokenHandledServices } from "../../services/cars.api.cervice";
 import {
   tokenAutoRefreshService,
   tokenRefreshTimer,
-} from "../../services/TokenAutoRefreshService";
+} from "../../services/tokenAutoRefreshService";
 import IUserInfo from "../../models/IUserInfo";
 import { useNavigate } from "react-router-dom";
 import styles from "./UserInfo.module.css";
@@ -18,7 +18,9 @@ const UserInfo = () => {
         await tokenHandledServices.getMe().then(({ data }) => setMe(data));
       } catch {
         try {
-          await tokenAutoRefreshService().then(() => getMEWrapper());
+          await tokenAutoRefreshService("externalCall").then(() =>
+            getMEWrapper(),
+          );
         } catch {
           console.log("Tokens refresh failed");
           clearInterval(tokenRefreshTimer);

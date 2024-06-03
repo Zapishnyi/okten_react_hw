@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Outlet } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import styles from "./MainLayout.module.css";
-import { tokenRefreshTimer } from "../../services/TokenAutoRefreshService";
+import { tokenRefreshTimer } from "../../services/tokenAutoRefreshService";
 
 const MainLayout: FC = () => {
   console.log(".");
