@@ -3,7 +3,6 @@ import React from "react";
 import CarManipulateForm from "../forms/CarManipulateForm";
 import ICarToSend from "../models/ICarToSend";
 import { tokenHandledServices } from "../services/cars.api.cervice";
-import { useSearchParams } from "react-router-dom";
 
 const CarCreate = () => {
   console.log(".");

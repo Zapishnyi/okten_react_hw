@@ -1,4 +1,4 @@
-import React, { createContext, FC, MouseEventHandler, useContext } from "react";
+import React, { FC, MouseEventHandler } from "react";
 import ICar from "../../models/ICar";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import styles from "./Car.module.css";
