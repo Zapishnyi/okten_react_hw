@@ -8,6 +8,7 @@ import {
   tokenRefreshTimer,
 } from "../../services/tokenAutoRefreshService";
 import buttonMarkAdd from "../../logic/pressedButtonMarkAdd";
+import pressedButtonMarksClear from "../../logic/pressedButtonMarksClear";
 
 interface ICarProps {
   car: ICar;
@@ -18,6 +19,7 @@ const Car: FC<ICarProps> = ({ car }) => {
   const [query, setQuery] = useSearchParams();
 
   const deleteHandle: MouseEventHandler<HTMLButtonElement> = async (e) => {
+    pressedButtonMarksClear();
     try {
       await tokenHandledServices.deleteCar(car.id);
       navigate(`/cars?page=${query.get("page")}`);
