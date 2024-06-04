@@ -1,20 +1,23 @@
-import React, { FC } from "react";
+import React, { FC, memo, useMemo } from "react";
 import { useContextData } from "../contexts/ContextProvider";
-import IUserWithPosts from "../models/IUserWithPosts";
 import IPostWithComments from "../models/IPostWithComments";
-import User from "../components/User";
 import Post from "../components/Post";
 import Comment from "../components/Comment";
 
 const PostWithComments: FC = () => {
   const { allPosts, allComments, chosenPost } = useContextData();
 
-  const chosenPostsComments: IPostWithComments[] = allPosts
-    .filter((post) => (chosenPost ? post.id === chosenPost.id : true))
-    .map((post) => ({
-      ...post,
-      comments: allComments.filter((comment) => comment.postId === post.id),
-    }));
+  const chosenPostsComments: IPostWithComments[] = useMemo(
+    () =>
+      allPosts
+        .filter((post) => (chosenPost ? post.id === chosenPost.id : true))
+        .map((post) => ({
+          ...post,
+          comments: allComments.filter((comment) => comment.postId === post.id),
+        })),
+
+    [chosenPost],
+  );
 
   return (
     <div className={"postWithComment"}>

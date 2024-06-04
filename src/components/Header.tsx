@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { NavLink } from "react-router-dom";
 import { useContextData } from "../contexts/ContextProvider";
-import IUserWithPosts from "../models/IUserWithPosts";
 
 const Header: FC = () => {
   const user = useContextData().chosenUser;
