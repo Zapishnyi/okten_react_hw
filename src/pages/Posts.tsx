@@ -4,6 +4,7 @@ import Post from "../components/Post";
 
 const Posts = () => {
   const { chosenUser } = useContextData();
+
   return (
     <div className={"dataWrapper"}>
       {useContextData().allPosts?.map((post) =>
