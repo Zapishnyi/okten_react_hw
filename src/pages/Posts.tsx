@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import { useContextData } from "../contexts/ContextProvider";
 import Post from "../components/Post";
 
-const Posts = () => {
+const Posts: FC = () => {
   const { chosenUser } = useContextData();
 
   return (

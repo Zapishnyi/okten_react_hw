@@ -3,15 +3,12 @@ import { NavLink } from "react-router-dom";
 import { useContextData } from "../contexts/ContextProvider";
 
 const Header: FC = () => {
-  const user = useContextData().chosenUser;
-  const post = useContextData().chosenPost;
-  const choseUser = useContextData().setUser;
-  const chosePost = useContextData().setPost;
+  const { chosenUser, chosenPost, setPost, setUser } = useContextData();
 
   const clearSelectionHandle = () => {
     document.querySelector(".active")?.classList.remove("active");
-    choseUser(null);
-    chosePost(null);
+    setPost(null);
+    setUser(null);
   };
 
   return (
@@ -37,10 +34,10 @@ const Header: FC = () => {
       <div>
         <h3>Chosen user information</h3>
         <p>
-          User:{user?.id} {user?.name}{" "}
+          User:{chosenUser?.id} {chosenUser?.name}{" "}
         </p>
         <p>
-          Post:{post?.id} {post?.title}
+          Post:{chosenPost?.id} {chosenPost?.title}
         </p>
       </div>
     </div>

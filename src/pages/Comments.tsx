@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import { useContextData } from "../contexts/ContextProvider";
 import Comment from "../components/Comment";
 
-const Comments = () => {
+const Comments: FC = () => {
   return (
     <div className={"dataWrapper"}>
       {useContextData().allComments?.map((comment) => (
