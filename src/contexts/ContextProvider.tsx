@@ -2,17 +2,9 @@ import IUser from "../models/IUser";
 import IComment from "../models/IComment";
 import IPost from "../models/IPost";
 import { createContext, Dispatch, SetStateAction, useContext } from "react";
+import IContextBundle from "../models/IContextBundle";
 
-export type UsersBundleType = {
-  allUsers: IUser[];
-  allPosts: IPost[];
-  allComments: IComment[];
-  chosenUser: IUser | null;
-  chosenPost: IPost | null;
-  setUser: Dispatch<SetStateAction<IUser | null>>;
-  setPost: Dispatch<SetStateAction<IPost | null>>;
-};
-const defaultValue: UsersBundleType = {
+const defaultValue: IContextBundle = {
   allUsers: [],
   allPosts: [],
   allComments: [],
@@ -22,5 +14,5 @@ const defaultValue: UsersBundleType = {
   setPost: () => {},
 };
 
-export const WholeContext = createContext<UsersBundleType>(defaultValue);
+export const WholeContext = createContext<IContextBundle>(defaultValue);
 export const useContextData = () => useContext(WholeContext);
