@@ -1,7 +1,4 @@
-import IUser from "../models/IUser";
-import IComment from "../models/IComment";
-import IPost from "../models/IPost";
-import { createContext, Dispatch, SetStateAction, useContext } from "react";
+import { createContext, useContext } from "react";
 import IContextBundle from "../models/IContextBundle";
 
 const defaultValue: IContextBundle = {
