@@ -1,48 +1,28 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect } from "react";
 import Header from "../components/Header";
 import { Outlet } from "react-router-dom";
 import jsonAPI from "../services/json.api.servise";
-import { WholeContext } from "../contexts/ContextProvider";
-import IUser from "../models/IUser";
-import IPost from "../models/IPost";
-import IComment from "../models/IComment";
-import IContextBundle from "../models/IContextBundle";
+import { dataStore } from "../stateManager/StateManager";
 
 const MainLayout: FC = () => {
-  const [users, setUsers] = useState<IUser[]>([]);
-  const [posts, setPosts] = useState<IPost[]>([]);
-  const [comments, setComments] = useState<IComment[]>([]);
-  const [chosenUser, setChosenUser] = useState<IUser | null>(null);
-  const [chosenPost, setChosenPost] = useState<IPost | null>(null);
+  const { setAllUsers, setAllPosts, setAllComments } = dataStore();
 
   useEffect(() => {
     jsonAPI.getUsers().then(({ data }) => {
-      setUsers(data);
+      setAllUsers(data);
     });
     jsonAPI.getPosts().then(({ data }) => {
-      setPosts(data);
+      setAllPosts(data);
     });
     jsonAPI.getComments().then(({ data }) => {
-      setComments(data);
+      setAllComments(data);
     });
   }, []);
 
-  const providerValue: IContextBundle = {
-    allUsers: users,
-    allPosts: posts,
-    allComments: comments,
-    chosenUser: chosenUser,
-    chosenPost: chosenPost,
-    setUser: setChosenUser,
-    setPost: setChosenPost,
-  };
-
   return (
     <div className={"wrapper"}>
-      <WholeContext.Provider value={providerValue}>
-        <Header />
-        <Outlet />
-      </WholeContext.Provider>
+      <Header />
+      <Outlet />
     </div>
   );
 };

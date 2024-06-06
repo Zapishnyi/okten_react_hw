@@ -1,11 +1,11 @@
 import React, { FC } from "react";
-import { useContextData } from "../contexts/ContextProvider";
+import { dataStore } from "../stateManager/StateManager";
 import Comment from "../components/Comment";
 
 const Comments: FC = () => {
   return (
     <div className={"dataWrapper"}>
-      {useContextData().allComments?.map((comment) => (
+      {dataStore().allComments.map((comment) => (
         <Comment key={comment.id} comment={comment} />
       ))}
     </div>

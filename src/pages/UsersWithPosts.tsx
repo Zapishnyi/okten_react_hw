@@ -1,11 +1,11 @@
 import React, { FC, useMemo } from "react";
-import { useContextData } from "../contexts/ContextProvider";
+import { dataStore } from "../stateManager/StateManager";
 import IUserWithPosts from "../models/IUserWithPosts";
 import User from "../components/User";
 import Post from "../components/Post";
 
 const UsersWithPosts: FC = () => {
-  const { allUsers, allPosts, chosenUser } = useContextData();
+  const { allUsers, allPosts, chosenUser } = dataStore();
 
   const chosenUsersPosts: IUserWithPosts[] = useMemo(
     () =>

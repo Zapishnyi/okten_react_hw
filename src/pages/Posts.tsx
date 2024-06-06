@@ -1,15 +1,15 @@
 import React, { FC } from "react";
-import { useContextData } from "../contexts/ContextProvider";
+import { dataStore } from "../stateManager/StateManager";
 import Post from "../components/Post";
 
 const Posts: FC = () => {
-  const { chosenUser } = useContextData();
+  const { chosenUser, allPosts } = dataStore();
 
   return (
     <div className={"dataWrapper"}>
-      {useContextData().allPosts?.map((post) =>
+      {allPosts.map((post) =>
         chosenUser ? (
-          post.userId === chosenUser?.id && <Post key={post.id} post={post} />
+          post.userId === chosenUser.id && <Post key={post.id} post={post} />
         ) : (
           <Post key={post.id} post={post} />
         ),

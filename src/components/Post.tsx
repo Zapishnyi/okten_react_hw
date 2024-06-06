@@ -1,16 +1,16 @@
 import React, { FC } from "react";
 import IPost from "../models/IPost";
-import { useContextData } from "../contexts/ContextProvider";
+import { dataStore } from "../stateManager/StateManager";
 
 interface IProps {
   post: IPost;
 }
 
 const Post: FC<IProps> = ({ post }) => {
-  let setPost = useContextData().setPost;
+  const { setChosenPost } = dataStore();
 
   return (
-    <div className={"itemToChose post"} onClick={() => setPost(post)}>
+    <div className={"itemToChose post"} onClick={() => setChosenPost(post)}>
       <p>
         Post ID: {post.id}, User ID:{post.userId}, Title:{post.title}
       </p>

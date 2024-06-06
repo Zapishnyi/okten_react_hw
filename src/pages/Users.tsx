@@ -1,11 +1,11 @@
 import React, { FC } from "react";
-import { useContextData } from "../contexts/ContextProvider";
+import { dataStore } from "../stateManager/StateManager";
 import User from "../components/User";
 
 const Users: FC = () => {
   return (
     <div className={"dataWrapper"}>
-      {useContextData().allUsers?.map((user) => (
+      {dataStore().allUsers.map((user) => (
         <User key={user.id} user={user} />
       ))}
     </div>

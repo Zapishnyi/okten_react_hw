@@ -1,14 +1,14 @@
 import React, { FC } from "react";
 import { NavLink } from "react-router-dom";
-import { useContextData } from "../contexts/ContextProvider";
+import { dataStore } from "../stateManager/StateManager";
 
 const Header: FC = () => {
-  const { chosenUser, chosenPost, setPost, setUser } = useContextData();
+  const { chosenUser, chosenPost, setChosenUser, setChosenPost } = dataStore();
 
   const clearSelectionHandle = () => {
     document.querySelector(".active")?.classList.remove("active");
-    setPost(null);
-    setUser(null);
+    setChosenUser(null);
+    setChosenPost(null);
   };
 
   return (

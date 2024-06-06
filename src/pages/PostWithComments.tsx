@@ -1,11 +1,11 @@
 import React, { FC, useMemo } from "react";
-import { useContextData } from "../contexts/ContextProvider";
+import { dataStore } from "../stateManager/StateManager";
 import IPostWithComments from "../models/IPostWithComments";
 import Post from "../components/Post";
 import Comment from "../components/Comment";
 
 const PostWithComments: FC = () => {
-  const { allPosts, allComments, chosenPost } = useContextData();
+  const { allPosts, allComments, chosenPost } = dataStore();
 
   const chosenPostsComments: IPostWithComments[] = useMemo(() => {
     return allPosts

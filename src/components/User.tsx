@@ -1,17 +1,17 @@
 import React, { FC } from "react";
 import IUserWithPosts from "../models/IUserWithPosts";
-import { useContextData } from "../contexts/ContextProvider";
+import { dataStore } from "../stateManager/StateManager";
 
 interface IProps {
   user: IUserWithPosts;
 }
 
 const User: FC<IProps> = ({ user }) => {
-  let setUser = useContextData().setUser;
-  let setPost = useContextData().setPost;
+  const { setChosenUser, setChosenPost } = dataStore();
+
   const choseUserHandler = () => {
-    setUser(user);
-    setPost(null);
+    setChosenUser(user);
+    setChosenPost(null);
   };
   return (
     <p className={"itemToChose user"} onClick={choseUserHandler}>
