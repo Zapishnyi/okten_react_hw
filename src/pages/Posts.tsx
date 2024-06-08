@@ -3,6 +3,7 @@ import { dataStore } from "../stateManager/StateManager";
 import Post from "../components/Post";
 
 const Posts: FC = () => {
+  console.log(".");
   const { chosenUser, allPosts } = dataStore();
 
   return (

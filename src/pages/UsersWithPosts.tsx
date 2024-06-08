@@ -5,6 +5,7 @@ import User from "../components/User";
 import Post from "../components/Post";
 
 const UsersWithPosts: FC = () => {
+  console.log(".");
   const { allUsers, allPosts, chosenUser } = dataStore();
 
   const chosenUsersPosts: IUserWithPosts[] = useMemo(

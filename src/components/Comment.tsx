@@ -6,6 +6,7 @@ interface IProps {
 }
 
 const Comment: FC<IProps> = ({ comment: { id, postId, name, body } }) => {
+  console.log(".");
   return (
     <div className={"comment"}>
       <p>

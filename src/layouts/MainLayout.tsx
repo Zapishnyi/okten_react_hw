@@ -5,6 +5,7 @@ import jsonAPI from "../services/json.api.servise";
 import { dataStore } from "../stateManager/StateManager";
 
 const MainLayout: FC = () => {
+  console.log(".");
   const { setAllUsers, setAllPosts, setAllComments } = dataStore();
 
   useEffect(() => {

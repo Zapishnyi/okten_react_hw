@@ -1,8 +1,9 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import { NavLink } from "react-router-dom";
 import { dataStore } from "../stateManager/StateManager";
 
-const Header: FC = () => {
+const Header: FC = memo(() => {
+  console.log(".");
   const { chosenUser, chosenPost, setChosenUser, setChosenPost } = dataStore();
 
   const clearSelectionHandle = () => {
@@ -42,6 +43,6 @@ const Header: FC = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Header;

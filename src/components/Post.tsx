@@ -7,6 +7,7 @@ interface IProps {
 }
 
 const Post: FC<IProps> = ({ post }) => {
+  console.log(".");
   const { setChosenPost } = dataStore();
 
   return (

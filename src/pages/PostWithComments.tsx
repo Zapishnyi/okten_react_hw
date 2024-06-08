@@ -5,16 +5,19 @@ import Post from "../components/Post";
 import Comment from "../components/Comment";
 
 const PostWithComments: FC = () => {
+  console.log(".");
   const { allPosts, allComments, chosenPost } = dataStore();
 
+  const checkProps = +JSON.stringify(chosenPost?.id);
   const chosenPostsComments: IPostWithComments[] = useMemo(() => {
+    console.log("chosenPostsComments recalculated");
     return allPosts
       .filter((post) => (chosenPost ? post.id === chosenPost.id : true))
       .map((post) => ({
         ...post,
         comments: allComments.filter((comment) => comment.postId === post.id),
       }));
-  }, [chosenPost]);
+  }, [checkProps]);
 
   return (
     <div className={"postWithComment"}>

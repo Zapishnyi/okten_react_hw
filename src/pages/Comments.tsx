@@ -3,6 +3,7 @@ import { dataStore } from "../stateManager/StateManager";
 import Comment from "../components/Comment";
 
 const Comments: FC = () => {
+  console.log(".");
   return (
     <div className={"dataWrapper"}>
       {dataStore().allComments.map((comment) => (

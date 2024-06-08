@@ -7,6 +7,7 @@ interface IProps {
 }
 
 const User: FC<IProps> = ({ user }) => {
+  console.log(".");
   const { setChosenUser, setChosenPost } = dataStore();
 
   const choseUserHandler = () => {
