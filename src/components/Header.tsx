@@ -1,8 +1,9 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import { NavLink } from "react-router-dom";
 import { useContextData } from "../contexts/ContextProvider";
 
 const Header: FC = () => {
+  console.log(".");
   const { chosenUser, chosenPost, setPost, setUser } = useContextData();
 
   const clearSelectionHandle = () => {

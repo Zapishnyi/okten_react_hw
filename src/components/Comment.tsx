@@ -1,11 +1,12 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import IComment from "../models/IComment";
 
 interface IProps {
   comment: IComment;
 }
 
-const Comment: FC<IProps> = ({ comment: { id, postId, name, body } }) => {
+const Comment: FC<IProps> = memo(({ comment: { id, postId, name, body } }) => {
+  console.log(".");
   return (
     <div className={"comment"}>
       <p>
@@ -14,6 +15,6 @@ const Comment: FC<IProps> = ({ comment: { id, postId, name, body } }) => {
       <p className={"body"}>Comment body: {body}</p>
     </div>
   );
-};
+});
 
 export default Comment;

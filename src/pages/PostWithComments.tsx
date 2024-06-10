@@ -5,16 +5,24 @@ import Post from "../components/Post";
 import Comment from "../components/Comment";
 
 const PostWithComments: FC = () => {
+  console.log(".");
   const { allPosts, allComments, chosenPost } = useContextData();
 
-  const chosenPostsComments: IPostWithComments[] = useMemo(() => {
-    return allPosts
-      .filter((post) => (chosenPost ? post.id === chosenPost.id : true))
-      .map((post) => ({
-        ...post,
-        comments: allComments.filter((comment) => comment.postId === post.id),
-      }));
-  }, [chosenPost]);
+  const chosenPostsComments = useMemo<IPostWithComments[]>(
+    () =>
+      allPosts
+        .filter((post) => (chosenPost ? post.id === chosenPost.id : true))
+        .map((post) => {
+          console.log("Posts with Comments recalculated");
+          return {
+            ...post,
+            comments: allComments.filter(
+              (comment) => comment.postId === post.id,
+            ),
+          };
+        }),
+    [chosenPost],
+  );
 
   return (
     <div className={"postWithComment"}>

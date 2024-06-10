@@ -9,6 +9,7 @@ import IComment from "../models/IComment";
 import IContextBundle from "../models/IContextBundle";
 
 const MainLayout: FC = () => {
+  console.log(".");
   const [users, setUsers] = useState<IUser[]>([]);
   const [posts, setPosts] = useState<IPost[]>([]);
   const [comments, setComments] = useState<IComment[]>([]);
@@ -19,6 +20,7 @@ const MainLayout: FC = () => {
     jsonAPI.getUsers().then(({ data }) => {
       setUsers(data);
     });
+    console.log("useEffect restarted");
     jsonAPI.getPosts().then(({ data }) => {
       setPosts(data);
     });

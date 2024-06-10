@@ -5,18 +5,18 @@ import User from "../components/User";
 import Post from "../components/Post";
 
 const UsersWithPosts: FC = () => {
+  console.log(".");
   const { allUsers, allPosts, chosenUser } = useContextData();
 
-  const chosenUsersPosts: IUserWithPosts[] = useMemo(
-    () =>
-      allUsers
-        .filter((user) => (chosenUser ? user.id === chosenUser.id : true))
-        .map((user) => ({
-          ...user,
-          posts: allPosts.filter((post) => post.userId === user.id),
-        })),
-    [chosenUser],
-  );
+  const chosenUsersPosts: IUserWithPosts[] = useMemo(() => {
+    console.log("ChosenUsersPosts recalculated");
+    return allUsers
+      .filter((user) => (chosenUser ? user.id === chosenUser.id : true))
+      .map((user) => ({
+        ...user,
+        posts: allPosts.filter((post) => post.userId === user.id),
+      }));
+  }, [chosenUser]);
 
   return (
     <div className={"userWithPost"}>

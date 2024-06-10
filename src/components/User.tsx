@@ -7,8 +7,9 @@ interface IProps {
 }
 
 const User: FC<IProps> = ({ user }) => {
-  let setUser = useContextData().setUser;
-  let setPost = useContextData().setPost;
+  console.log(".");
+  const { setUser, setPost } = useContextData();
+
   const choseUserHandler = () => {
     setUser(user);
     setPost(null);

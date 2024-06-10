@@ -3,6 +3,7 @@ import { useContextData } from "../contexts/ContextProvider";
 import Comment from "../components/Comment";
 
 const Comments: FC = () => {
+  console.log(".");
   return (
     <div className={"dataWrapper"}>
       {useContextData().allComments?.map((comment) => (

@@ -3,6 +3,7 @@ import { useContextData } from "../contexts/ContextProvider";
 import Post from "../components/Post";
 
 const Posts: FC = () => {
+  console.log(".");
   const { chosenUser } = useContextData();
 
   return (
