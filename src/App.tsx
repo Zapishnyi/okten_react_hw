@@ -22,7 +22,7 @@ const App = () => {
       </div>
       <div className={"customBox"}>
         <p> Please enter desired value to change:</p>
-        <input className={"custom"} type="number" />
+        <input type="number" />
         <button
           onClick={(e) =>
             dispatch(
