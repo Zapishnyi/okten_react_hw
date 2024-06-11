@@ -13,47 +13,34 @@ const App = () => {
 
   const dispatch = useAppDispatch();
 
-  const clickHandler = (e: MouseEvent<HTMLButtonElement>) => {
-    switch (e.currentTarget.className) {
-      case "increment":
-        dispatch(increment());
-        break;
-      case "decrement":
-        dispatch(decrement());
-        break;
-      case "customAction":
-        dispatch(
-          customValueChange(
-            +(document.getElementsByClassName("custom")[0] as HTMLInputElement)
-              .value,
-          ),
-        );
-        break;
-      case "reset":
-        dispatch(reset());
-        break;
-    }
-  };
-
   return (
     <div className="App">
       <h2>{value}</h2>
       <div>
-        <button className={"increment"} onClick={clickHandler}>
+        <button className={"increment"} onClick={() => dispatch(increment())}>
           Increment
         </button>
-        <button className={"decrement"} onClick={clickHandler}>
+        <button className={"decrement"} onClick={() => dispatch(decrement())}>
           Decrement
         </button>
       </div>
       <div className={"customBox"}>
         <p> Please enter desired value to change:</p>
         <input className={"custom"} type="number" />
-        <button className={"customAction"} onClick={clickHandler}>
+        <button
+          className={"customAction"}
+          onClick={(e) =>
+            dispatch(
+              customValueChange(
+                +(e.currentTarget.previousSibling as HTMLInputElement).value,
+              ),
+            )
+          }
+        >
           Change
         </button>
       </div>
-      <button className={"reset"} onClick={clickHandler}>
+      <button className={"reset"} onClick={() => dispatch(reset())}>
         Reset
       </button>
     </div>
