@@ -1,7 +1,12 @@
 import React, { MouseEvent } from "react";
 import "./App.css";
 import { useAppDispatch, useAppSelector } from "./redux/store";
-import { customValueChange, decrement, increment } from "./redux/slice1/slice1";
+import {
+  customValueChange,
+  decrement,
+  increment,
+  reset,
+} from "./redux/slice1/slice1";
 
 const App = () => {
   const { value } = useAppSelector((state) => state.slice1);
@@ -24,6 +29,9 @@ const App = () => {
           ),
         );
         break;
+      case "reset":
+        dispatch(reset());
+        break;
     }
   };
 
@@ -45,6 +53,9 @@ const App = () => {
           Change
         </button>
       </div>
+      <button className={"reset"} onClick={clickHandler}>
+        Reset
+      </button>
     </div>
   );
 };
