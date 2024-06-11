@@ -1,0 +1,22 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 300px;
+    align-items: center;
+    margin: 0 Auto;
+    height: 100vh;
+
+    .customBox {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+        button {
+            margin: 15px;
+        }
+    }
+}
+
