@@ -22,7 +22,7 @@ export const counter = createSlice({
       state.value = state.value + action.payload;
     },
     reset: (state) => {
-      state.value = 0;
+      state.value = initialState.value;
     },
   },
 });
