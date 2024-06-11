@@ -17,18 +17,13 @@ const App = () => {
     <div className="App">
       <h2>{value}</h2>
       <div>
-        <button className={"increment"} onClick={() => dispatch(increment())}>
-          Increment
-        </button>
-        <button className={"decrement"} onClick={() => dispatch(decrement())}>
-          Decrement
-        </button>
+        <button onClick={() => dispatch(increment())}>Increment</button>
+        <button onClick={() => dispatch(decrement())}>Decrement</button>
       </div>
       <div className={"customBox"}>
         <p> Please enter desired value to change:</p>
         <input className={"custom"} type="number" />
         <button
-          className={"customAction"}
           onClick={(e) =>
             dispatch(
               customValueChange(
@@ -40,9 +35,7 @@ const App = () => {
           Change
         </button>
       </div>
-      <button className={"reset"} onClick={() => dispatch(reset())}>
-        Reset
-      </button>
+      <button onClick={() => dispatch(reset())}>Reset</button>
     </div>
   );
 };
