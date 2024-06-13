@@ -1,14 +1,18 @@
 import React, { FC } from "react";
-import { dataStore } from "../stateManager/StateManager";
 import Post from "../components/Post";
+import { useAppSelector } from "../redux/store";
 
 const Posts: FC = () => {
   console.log(".");
-  const { chosenUser, allPosts } = dataStore();
+
+  const {
+    Posts: { postsState },
+    ChosenUser: { chosenUser },
+  } = useAppSelector((state) => state);
 
   return (
     <div className={"dataWrapper"}>
-      {allPosts.map((post) =>
+      {postsState.map((post) =>
         chosenUser ? (
           post.userId === chosenUser.id && <Post key={post.id} post={post} />
         ) : (

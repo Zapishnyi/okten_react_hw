@@ -1,23 +1,18 @@
 import React, { FC, useEffect } from "react";
 import Header from "../components/Header";
 import { Outlet } from "react-router-dom";
-import jsonAPI from "../services/json.api.servise";
-import { dataStore } from "../stateManager/StateManager";
+import { useAppDispatch } from "../redux/store";
+import { UsersActions } from "../redux/usersState/usersState";
+import { PostsActions } from "../redux/postsState/postsState";
+import { CommentsActions } from "../redux/commentsState/commentsState";
 
 const MainLayout: FC = () => {
   console.log(".");
-  const { setAllUsers, setAllPosts, setAllComments } = dataStore();
-
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    jsonAPI.getUsers().then(({ data }) => {
-      setAllUsers(data);
-    });
-    jsonAPI.getPosts().then(({ data }) => {
-      setAllPosts(data);
-    });
-    jsonAPI.getComments().then(({ data }) => {
-      setAllComments(data);
-    });
+    dispatch(UsersActions.loadUsers());
+    dispatch(PostsActions.loadPosts());
+    dispatch(CommentsActions.loadComments());
   }, []);
 
   return (

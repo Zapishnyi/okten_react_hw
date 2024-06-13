@@ -1,12 +1,15 @@
 import React, { FC } from "react";
-import { dataStore } from "../stateManager/StateManager";
 import Comment from "../components/Comment";
+import { useAppSelector } from "../redux/store";
 
 const Comments: FC = () => {
   console.log(".");
+
+  const { commentsState } = useAppSelector((store) => store.Comments);
+
   return (
     <div className={"dataWrapper"}>
-      {dataStore().allComments.map((comment) => (
+      {commentsState.map((comment) => (
         <Comment key={comment.id} comment={comment} />
       ))}
     </div>

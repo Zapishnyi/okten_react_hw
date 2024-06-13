@@ -8,15 +8,19 @@ const axiosInstance = axios.create({
 });
 
 interface IJsonAPI {
-  getUsers: () => Promise<AxiosResponse<IUser[]>>;
-  getPosts: () => Promise<AxiosResponse<IPost[]>>;
-  getComments: () => Promise<AxiosResponse<IComment[]>>;
+  getUsers: () => Promise<IUser[]>;
+  getPosts: () => Promise<IPost[]>;
+  getComments: () => Promise<IComment[]>;
 }
 
 const jsonAPI: IJsonAPI = {
-  getUsers: () => axiosInstance.get("users"),
-  getPosts: () => axiosInstance.get("posts"),
-  getComments: () => axiosInstance.get("comments"),
+  getUsers: () =>
+    axiosInstance
+      .get("users")
+      .then((users: AxiosResponse<IUser[]>) => users.data),
+  getPosts: () => axiosInstance.get("posts").then((posts) => posts.data),
+  getComments: () =>
+    axiosInstance.get("comments").then((comments) => comments.data),
 };
 
 export default jsonAPI;

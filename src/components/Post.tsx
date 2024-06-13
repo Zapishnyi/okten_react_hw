@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import IPost from "../models/IPost";
-import { dataStore } from "../stateManager/StateManager";
+import { useAppDispatch } from "../redux/store";
+import { setChosenPost } from "../redux/chosenPost/chousenPostState";
 
 interface IProps {
   post: IPost;
@@ -8,10 +9,13 @@ interface IProps {
 
 const Post: FC<IProps> = ({ post }) => {
   console.log(".");
-  const { setChosenPost } = dataStore();
+  const dispatch = useAppDispatch();
 
   return (
-    <div className={"itemToChose post"} onClick={() => setChosenPost(post)}>
+    <div
+      className={"itemToChose post"}
+      onClick={() => dispatch(setChosenPost(post))}
+    >
       <p>
         Post ID: {post.id}, User ID:{post.userId}, Title:{post.title}
       </p>

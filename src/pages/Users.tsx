@@ -1,12 +1,15 @@
 import React, { FC } from "react";
-import { dataStore } from "../stateManager/StateManager";
 import User from "../components/User";
+import { useAppSelector } from "../redux/store";
 
 const Users: FC = () => {
   console.log(".");
+
+  const { usersState } = useAppSelector((state) => state.Users);
+
   return (
     <div className={"dataWrapper"}>
-      {dataStore().allUsers.map((user) => (
+      {usersState.map((user) => (
         <User key={user.id} user={user} />
       ))}
     </div>

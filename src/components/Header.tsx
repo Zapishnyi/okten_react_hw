@@ -1,15 +1,21 @@
 import React, { FC, memo } from "react";
 import { NavLink } from "react-router-dom";
-import { dataStore } from "../stateManager/StateManager";
+import { useAppDispatch, useAppSelector } from "../redux/store";
+import { setChosenUser } from "../redux/chosenUser/chosenUserState";
+import { setChosenPost } from "../redux/chosenPost/chousenPostState";
 
 const Header: FC = memo(() => {
   console.log(".");
-  const { chosenUser, chosenPost, setChosenUser, setChosenPost } = dataStore();
+  const dispatch = useAppDispatch();
+  const {
+    ChosenPost: { chosenPost },
+    ChosenUser: { chosenUser },
+  } = useAppSelector((store) => store);
 
   const clearSelectionHandle = () => {
     document.querySelector(".active")?.classList.remove("active");
-    setChosenUser(null);
-    setChosenPost(null);
+    dispatch(setChosenUser(null));
+    dispatch(setChosenPost(null));
   };
 
   return (

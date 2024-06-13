@@ -1,21 +1,25 @@
 import React, { FC, useMemo } from "react";
-import { dataStore } from "../stateManager/StateManager";
 import IPostWithComments from "../models/IPostWithComments";
 import Post from "../components/Post";
 import Comment from "../components/Comment";
+import { useAppSelector } from "../redux/store";
 
 const PostWithComments: FC = () => {
   console.log(".");
-  const { allPosts, allComments, chosenPost } = dataStore();
+  const {
+    Posts: { postsState },
+    ChosenPost: { chosenPost },
+    Comments: { commentsState },
+  } = useAppSelector((store) => store);
 
   const checkProps = +JSON.stringify(chosenPost?.id);
   const chosenPostsComments: IPostWithComments[] = useMemo(() => {
     console.log("chosenPostsComments recalculated");
-    return allPosts
+    return postsState
       .filter((post) => (chosenPost ? post.id === chosenPost.id : true))
       .map((post) => ({
         ...post,
-        comments: allComments.filter((comment) => comment.postId === post.id),
+        comments: commentsState.filter((comment) => comment.postId === post.id),
       }));
   }, [checkProps]);
 

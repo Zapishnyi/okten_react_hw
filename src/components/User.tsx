@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 import IUserWithPosts from "../models/IUserWithPosts";
-import { dataStore } from "../stateManager/StateManager";
+import { useAppDispatch } from "../redux/store";
+import { setChosenUser } from "../redux/chosenUser/chosenUserState";
+import { setChosenPost } from "../redux/chosenPost/chousenPostState";
 
 interface IProps {
   user: IUserWithPosts;
@@ -8,11 +10,11 @@ interface IProps {
 
 const User: FC<IProps> = ({ user }) => {
   console.log(".");
-  const { setChosenUser, setChosenPost } = dataStore();
+  const dispatch = useAppDispatch();
 
   const choseUserHandler = () => {
-    setChosenUser(user);
-    setChosenPost(null);
+    dispatch(setChosenUser(user));
+    dispatch(setChosenPost(null));
   };
   return (
     <p className={"itemToChose user"} onClick={choseUserHandler}>

@@ -1,20 +1,24 @@
 import React, { FC, useMemo } from "react";
-import { dataStore } from "../stateManager/StateManager";
 import IUserWithPosts from "../models/IUserWithPosts";
 import User from "../components/User";
 import Post from "../components/Post";
+import { useAppSelector } from "../redux/store";
 
 const UsersWithPosts: FC = () => {
   console.log(".");
-  const { allUsers, allPosts, chosenUser } = dataStore();
+  const {
+    Users: { usersState },
+    Posts: { postsState },
+    ChosenUser: { chosenUser },
+  } = useAppSelector((store) => store);
 
   const chosenUsersPosts: IUserWithPosts[] = useMemo(
     () =>
-      allUsers
+      usersState
         .filter((user) => (chosenUser ? user.id === chosenUser.id : true))
         .map((user) => ({
           ...user,
-          posts: allPosts.filter((post) => post.userId === user.id),
+          posts: postsState.filter((post) => post.userId === user.id),
         })),
     [chosenUser],
   );
