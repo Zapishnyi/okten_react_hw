@@ -121,7 +121,7 @@ export const jsonSlice = createSlice({
       })
       .addMatcher(
         isPending(loadUsers, loadPosts, setChosenUser, setChosenPost),
-        (state, action) => {
+        (state) => {
           state.loadingState = true;
         },
       )
