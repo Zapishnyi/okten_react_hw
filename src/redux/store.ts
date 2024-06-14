@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { jsonSlice } from "./sliceBundle/sliceBundle";
 import { useDispatch, useSelector } from "react-redux";
+import { UsersSlice } from "./UsersSlice/UsersSlice";
+import { PostsSlice } from "./PostsSlice/PostsSlice";
 
 export const store = configureStore({
   reducer: {
-    StoreManipulate: jsonSlice.reducer,
+    UserBundle: UsersSlice.reducer,
+    PostBundle: PostsSlice.reducer,
   },
 });
 

@@ -11,7 +11,7 @@ interface IProps {
 const Post: FC<IProps> = ({ post }) => {
   console.log(".");
 
-  const { users } = useAppSelector((state) => state.StoreManipulate);
+  const { users } = useAppSelector((state) => state.UserBundle);
 
   const navigate = useNavigate();
 

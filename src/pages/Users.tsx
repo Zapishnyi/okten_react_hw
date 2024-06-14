@@ -1,20 +1,21 @@
 import React, { FC, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/store";
-import { StoreActions } from "../redux/sliceBundle/sliceBundle";
 import User from "../components/UserPost/User";
+import { UsersActions } from "../redux/UsersSlice/UsersSlice";
 
 const Users: FC = () => {
   console.log(".");
-  const { users, loadingState } = useAppSelector(
-    (state) => state.StoreManipulate,
+  const { users, userLoadingState } = useAppSelector(
+    (state) => state.UserBundle,
   );
+
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(StoreActions.loadUsers());
+    dispatch(UsersActions.loadUsers());
   }, []);
   return (
     <div>
-      {loadingState && <p>Loading...</p>}
+      {userLoadingState && <p>Loading...</p>}
       <div>
         {users.map((user) => (
           <User key={user.id} user={user} />

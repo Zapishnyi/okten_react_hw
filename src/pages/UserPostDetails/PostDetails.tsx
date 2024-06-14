@@ -1,21 +1,23 @@
 import React, { FC, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { useParams } from "react-router-dom";
-import { StoreActions } from "../../redux/sliceBundle/sliceBundle";
+import { PostsActions } from "../../redux/PostsSlice/PostsSlice";
 
 const PostDetails: FC = () => {
   console.log(".");
   const dispatch = useAppDispatch();
-  const { chosenPost, loadingState } = useAppSelector(
-    (store) => store.StoreManipulate,
+  const { chosenPost, postLoadingState } = useAppSelector(
+    (store) => store.PostBundle,
   );
   const { postId } = useParams();
   useEffect(() => {
-    dispatch(StoreActions.setChosenPost(postId || "error"));
+    postId
+      ? dispatch(PostsActions.setChosenPost(postId))
+      : console.log("no postId given");
   }, [postId]);
   return (
     <div>
-      {loadingState && <p>Loading...</p>}
+      {postLoadingState && <p>Loading...</p>}
       <div>
         {chosenPost && (
           <div>

@@ -1,23 +1,25 @@
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
-import { StoreActions } from "../../redux/sliceBundle/sliceBundle";
 import { useParams } from "react-router-dom";
+import { UsersActions } from "../../redux/UsersSlice/UsersSlice";
 
 const UserDetails = () => {
   console.log(".");
 
   const dispatch = useAppDispatch();
 
-  const { chosenUser, loadingState } = useAppSelector(
-    (store) => store.StoreManipulate,
+  const { chosenUser, userLoadingState } = useAppSelector(
+    (store) => store.UserBundle,
   );
   const { userId } = useParams();
   useEffect(() => {
-    dispatch(StoreActions.setChosenUser(userId || "error"));
+    userId
+      ? dispatch(UsersActions.setChosenUser(userId))
+      : console.log("no userId given");
   }, [userId]);
   return (
     <div>
-      {loadingState && <p>Loading...</p>}
+      {userLoadingState && <p>Loading...</p>}
       <div>
         {chosenUser && (
           <div>
