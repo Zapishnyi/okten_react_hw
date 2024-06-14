@@ -1,16 +1,19 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Users from "../pages/Users";
 import Posts from "../pages/Posts";
-import UserDetails from "../pages/UserDetails";
-import Post from "../components/Post";
-import PostDetails from "../pages/PostDetails";
+import UserDetails from "../pages/UserPostDetails/UserDetails";
+import PostDetails from "../pages/UserPostDetails/PostDetails";
 
 export const routerConfig = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
     children: [
+      {
+        index: true,
+        element: <Navigate to={"users"} />,
+      },
       {
         path: "users",
         element: <Users />,
@@ -20,11 +23,11 @@ export const routerConfig = createBrowserRouter([
         element: <Posts />,
       },
       {
-        path: "users/:id",
+        path: "users/:userId",
         element: <UserDetails />,
       },
       {
-        path: "posts/:id",
+        path: "posts/:postId",
         element: <PostDetails />,
       },
     ],
